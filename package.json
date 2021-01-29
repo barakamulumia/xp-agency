@@ -4,7 +4,9 @@
   "description": "Web Application for a freight forwarding Agency",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client": "npm start --prefix client",
+    "server": "npm start --prefix backend",
+    "start": "concurrently \"yarn client\" \"yarn server\""
   },
   "repository": {
     "type": "git",
