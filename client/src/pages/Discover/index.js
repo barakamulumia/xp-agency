@@ -1,3 +1,4 @@
+import { Typography } from "@material-ui/core";
 import React, { Fragment } from "react";
 import { Navbar } from "../../components";
 
@@ -11,6 +12,10 @@ const Discover = ({ withNav }) => {
     >
       <Fragment>
         <Navbar />
+        <br />
+        <Typography variant="h1" component="h1">
+          Comming Soon.........
+        </Typography>
       </Fragment>
     </div>
   );

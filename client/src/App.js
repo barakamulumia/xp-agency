@@ -5,9 +5,10 @@ import GlobalStyle from "./Resources/Styles/global";
 
 import {
   Home,
+  Discover,
+  Services,
   SignUp,
   SignIn,
-  Services,
   Client,
   Driver,
   Admin,
@@ -21,6 +22,7 @@ export default function App() {
       <ScrollToTop />
       <Switch>
         <Route exact path={["/", "/home"]} component={Home} />
+        <Route exact path="/discover" component={Discover} />
         <Route exact path="/services">
           <Services withNav="true" />
         </Route>
