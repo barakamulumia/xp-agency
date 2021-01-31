@@ -1,16 +1,13 @@
-import {
-  Slide,
-  Dialog,
-  DialogActions,
-  DialogContentText,
-} from "@material-ui/core";
+import { Slide, Dialog, DialogActions } from "@material-ui/core";
+import "./overwrite.css";
 
 import {
-  DialogBoxTitle,
-  DialogContentBox,
   DialogMedia,
-  DialogContentItem,
   DialogContainer,
+  DialogCard,
+  DialogContent,
+  DialogMediaWrapper,
+  DialogTextContent,
 } from "./DecisionDialog.element";
 
 import { LinkButton, Button } from "../../Resources/Styles/global";
@@ -35,7 +32,7 @@ const DecisionDialog = ({ btnText, actionText, primary, small, big }) => {
   };
 
   return (
-    <div>
+    <div className="root">
       <Button
         onClick={handleClickOpen}
         primary={primary}
@@ -49,19 +46,18 @@ const DecisionDialog = ({ btnText, actionText, primary, small, big }) => {
         TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
-        aria-labelledby="dialog-slide-title"
+        style={{
+          background: "rgba(0, 0, 0, 0.5)",
+        }}
       >
-        <DialogBoxTitle id="dialog-slide-title">
-          {"Elevate your freight transit expirience "}
-        </DialogBoxTitle>
         <DialogContainer>
-          <DialogContentItem>
-            <DialogMedia src="https://i.postimg.cc/DZqKmp8k/highway-truck.jpg" />
-            <DialogContentBox>
-              <DialogContentText>
-                Get paid to sit behind the wheel
-              </DialogContentText>
-            </DialogContentBox>
+          <DialogCard>
+            <DialogContent>
+              <DialogMediaWrapper>
+                <DialogMedia src="https://i.postimg.cc/DZqKmp8k/highway-truck.jpg" />
+              </DialogMediaWrapper>
+              <DialogTextContent>Join the driving community</DialogTextContent>
+            </DialogContent>
             <DialogActions>
               <LinkButton
                 onClick={handleClose}
@@ -70,22 +66,23 @@ const DecisionDialog = ({ btnText, actionText, primary, small, big }) => {
                 {actionText} to Drive
               </LinkButton>
             </DialogActions>
-          </DialogContentItem>
-          <DialogContentItem>
-            <DialogMedia src="https://i.postimg.cc/4yDjR3G8/packing-boxes.jpg" />
-            <DialogContentBox>
-              <DialogContentText>Ship with XpressKenya</DialogContentText>
-            </DialogContentBox>
+          </DialogCard>
+          <DialogCard>
+            <DialogContent>
+              <DialogMediaWrapper>
+                <DialogMedia src="https://i.postimg.cc/4yDjR3G8/packing-boxes.jpg" />
+              </DialogMediaWrapper>
+              <DialogTextContent>Ship with xpresskenya</DialogTextContent>
+            </DialogContent>
             <DialogActions>
               <LinkButton
-                secondary="true"
                 onClick={handleClose}
                 to={`/client/${toRoute(actionText)}`}
               >
                 {actionText} to Ship
               </LinkButton>
             </DialogActions>
-          </DialogContentItem>
+          </DialogCard>
         </DialogContainer>
       </Dialog>
     </div>
