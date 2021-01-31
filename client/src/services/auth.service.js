@@ -3,18 +3,18 @@ import axios from "axios";
 const API_URL = "http://localhost:8080/api/auth/";
 
 class AuthService {
-  login(email, password, roles = []) {
+  login(email, password, role) {
     return axios
       .post(API_URL + "signin", {
         email,
         password,
-        roles,
+        role,
       })
       .then((response) => {
         if (response.data.accessToken) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }
-
+        console.log(response);
         return response.data;
       });
   }
@@ -23,14 +23,14 @@ class AuthService {
     localStorage.removeItem("user");
   }
 
-  register(firstname, lastname, email, phoneno, password, roles = []) {
+  register(firstname, lastname, email, phoneno, password, role) {
     return axios.post(API_URL + "signup", {
       firstname,
       lastname,
       email,
       phoneno,
       password,
-      roles,
+      role,
     });
   }
 

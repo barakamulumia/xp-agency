@@ -11,7 +11,11 @@ module.exports = function (app) {
   });
   app.get("/api/test/all", controller.allAccess);
 
-  app.get("/api/test/client", [authJwt.verifyToken], controller.clientBoard);
+  app.get(
+    "/api/test/client",
+    [authJwt.verifyToken, authJwt.isClient],
+    controller.clientBoard
+  );
 
   app.get(
     "/api/test/driver",

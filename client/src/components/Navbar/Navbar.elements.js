@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { FaMeteor } from "react-icons/fa";
 
 export const Nav = styled.nav`
-  background: #101522;
+  background: #0231a7;
   height: 70px;
   display: flex;
   justify-content: center;

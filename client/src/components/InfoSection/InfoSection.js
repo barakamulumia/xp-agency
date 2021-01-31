@@ -4,8 +4,8 @@ import { DecisionDialog } from "../";
 
 import {
   InfoSec,
-  InfoRow,
   InfoColumn,
+  InfoRow,
   TextWrapper,
   TopLine,
   Heading,
@@ -14,19 +14,12 @@ import {
   ImgWrapper,
 } from "./InfoSection.elements";
 
-const InfoSection = ({
-  imgStart,
-  topline,
-  headline,
-  description,
-  btn,
-  img,
-}) => {
+const InfoSection = ({ topline, headline, description, btn, img }) => {
   return (
     <Fragment>
       <InfoSec>
         <Container>
-          <InfoRow imgStart={imgStart}>
+          <InfoRow>
             <InfoColumn>
               <TextWrapper>
                 <TopLine>{topline.content}</TopLine>
@@ -34,7 +27,7 @@ const InfoSection = ({
                 <SubTitle>{description.content}</SubTitle>
                 <DecisionDialog
                   big="true"
-                  secondary="true"
+                  primary="true"
                   btnText={btn.label}
                   actionText="Sign up"
                 />

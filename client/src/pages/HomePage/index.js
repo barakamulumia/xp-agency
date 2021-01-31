@@ -3,7 +3,7 @@ import { Footer, InfoSection, Navbar } from "../../components";
 import { HeroInfo } from "../../Resources/Data/heroInfo";
 import { Services } from "../index";
 
-const Home = () => {
+export default function Home() {
   return (
     <Fragment>
       <Navbar />
@@ -12,6 +12,4 @@ const Home = () => {
       <Footer />
     </Fragment>
   );
-};
-
-export default Home;
+}

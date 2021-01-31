@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import AuthService from "../services/auth.service";
+import { Navbar } from "../../components";
+import AuthService from "../../services/auth.service";
 
 export default function Profile() {
   const [redirect, setRedirect] = useState(null);
@@ -25,6 +26,7 @@ export default function Profile() {
     <div className="container">
       {userReady ? (
         <div>
+          <Navbar />
           <header className="jumbotron">
             <h3>
               <strong>{currentUser.firstname}</strong> Profile
@@ -44,12 +46,7 @@ export default function Profile() {
             <strong>Email:</strong> {currentUser.email}
           </p>
           <strong>Authorities:</strong>
-          <ul>
-            {currentUser.roles &&
-              currentUser.roles.map((role, index) => (
-                <li key={index}>{role}</li>
-              ))}
-          </ul>
+          {currentUser.role && <p>{currentUser.role}</p>}
         </div>
       ) : null}
     </div>

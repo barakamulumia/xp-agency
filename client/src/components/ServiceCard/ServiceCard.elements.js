@@ -7,7 +7,6 @@ export const CardContainer = styled(Paper)`
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   padding: 30px;
-  position: relative;
   margin: 20px auto;
   width: 300px;
   height: 280px;

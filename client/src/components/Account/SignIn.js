@@ -52,18 +52,19 @@ export default function SignUp({ route }) {
     event.preventDefault();
   };
 
-  const roles = ["driver"];
+  const role = route;
 
   const onSubmit = (user) => {
     const { email, password } = user;
     setLoading(true);
 
-    AuthService.login(email, password, roles).then(
+    AuthService.login(email, password, role).then(
       () => {
-        history.push("/profile");
+        history.push(`/${route}`);
         setLoading(false);
         window.location.reload();
       },
+
       (error) => {
         const resMessage =
           (error.response &&

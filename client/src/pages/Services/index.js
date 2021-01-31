@@ -3,7 +3,7 @@ import { Grid } from "@material-ui/core";
 import { ServiceCard, Navbar } from "../../components";
 import { services } from "../../Resources/Data/services";
 
-const Services = ({ withNav }) => {
+export default function Services({ withNav }) {
   const ServiceContainer = () => (
     <div
       style={{
@@ -11,9 +11,16 @@ const Services = ({ withNav }) => {
         margin: "auto",
         display: "flex",
         justifyContent: "center",
+        alignContent: "center",
       }}
     >
-      <Grid container direction="row" justify="center" alignContent="center">
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignContent="center"
+        spacing={5}
+      >
         {services.map((data) => (
           <ServiceCard key={data.heading} {...data} />
         ))}
@@ -38,6 +45,4 @@ const Services = ({ withNav }) => {
       )}
     </div>
   );
-};
-
-export default Services;
+}

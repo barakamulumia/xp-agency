@@ -1,5 +1,7 @@
 exports.allAccess = (_req, res) => {
-  res.status(200).json({ content: "Public content" });
+  res.status(200).json({
+    content: "Public content",
+  });
 };
 
 exports.driverBoard = (_req, res) => {
@@ -9,9 +11,13 @@ exports.driverBoard = (_req, res) => {
 };
 
 exports.clientBoard = (_req, res) => {
-  res.status(200).json({ content: "Client Content" });
+  res.status(200).json({
+    content: "Client Content",
+  });
 };
 
 exports.adminBoard = (_req, res) => {
-  res.status(200).json({ content: "Admin content" });
+  res.status(200).json({
+    content: "Admin content",
+  });
 };

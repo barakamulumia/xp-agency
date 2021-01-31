@@ -21,14 +21,7 @@ const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const DecisionDialog = ({
-  btnText,
-  actionText,
-  primary,
-  secondary,
-  small,
-  big,
-}) => {
+const DecisionDialog = ({ btnText, actionText, primary, small, big }) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -46,7 +39,6 @@ const DecisionDialog = ({
       <Button
         onClick={handleClickOpen}
         primary={primary}
-        secondary={secondary}
         big={big}
         small={small}
       >

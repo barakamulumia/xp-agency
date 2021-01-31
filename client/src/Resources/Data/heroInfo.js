@@ -1,7 +1,6 @@
 import townImage from "../../images/town.svg";
 
 export const HeroInfo = {
-  imgStart: "",
   topline: {
     content: "Freight Forwarding Agency",
     light: true,

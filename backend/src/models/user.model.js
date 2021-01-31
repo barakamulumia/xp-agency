@@ -8,12 +8,11 @@ const User = mongoose.model(
     phoneno: String,
     email: String,
     password: String,
-    roles: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Role",
-      },
-    ],
+    role: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Role",
+      required: "Role is required",
+    },
   })
 );
 

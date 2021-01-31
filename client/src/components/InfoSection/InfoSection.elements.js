@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const InfoSec = styled.div`
   color: #101522;
   padding: 160px 0;
-  min-height: 100vh;
   background: #fdfdf8;
 
   /* background-image: url("https://i.postimg.cc/nhkFjLrr/kepple-port.jpg");
@@ -15,7 +14,7 @@ export const InfoRow = styled.div`
   display: flex;
   margin: 0 -15px -15px --15px;
   flex-wrap: wrap;
-  flex-direction: ${({ imgStart }) => (imgStart ? "row-reverse" : "row")};
+  flex-direction: row;
 `;
 
 export const InfoColumn = styled.div`

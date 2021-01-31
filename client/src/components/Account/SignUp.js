@@ -53,7 +53,7 @@ export default function SignUp({ route }) {
     event.preventDefault();
   };
 
-  const roles = ["driver"];
+  const role = route;
 
   const onSubmit = (user) => {
     const { firstname, lastname, phoneno, email, password } = user;
@@ -64,13 +64,13 @@ export default function SignUp({ route }) {
       email,
       phoneno,
       password,
-      roles
+      role
     ).then(
       (response) => {
         setMessage(response.data.message);
-        AuthService.login(email, password, roles).then(
+        AuthService.login(email, password, role).then(
           () => {
-            history.push("/profile");
+            history.push(`/${route}`);
             window.location.reload();
           },
           (error) => {
@@ -91,6 +91,7 @@ export default function SignUp({ route }) {
             error.response.data.message) ||
           error.message ||
           error.toString();
+        console.log(resMessage);
         setMessage(resMessage);
       }
     );
@@ -123,7 +124,6 @@ export default function SignUp({ route }) {
                   fullWidth
                   id="firstname"
                   label="First Name"
-                  autoFocus
                 />
                 <ValidationError
                   errors={errors}

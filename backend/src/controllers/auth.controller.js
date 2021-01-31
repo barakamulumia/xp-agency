@@ -13,115 +13,94 @@ exports.signup = (req, res) => {
     phoneno,
     email,
     password: userPassword,
-    roles,
+    role,
   } = req.body;
 
-  const user = new User({
-    firstname,
-    lastname,
-    phoneno,
-    email,
-    password: bcrypt.hashSync(userPassword, 11),
-  });
+  Role.findOne(
+    {
+      name: role,
+    },
+    (err, role) => {
+      if (err) {
+        res.status(500).json({ message: err });
+        return;
+      }
+      const user = new User({
+        firstname,
+        lastname,
+        phoneno,
+        email,
+        password: bcrypt.hashSync(userPassword, 11),
+        role: role._id,
+      });
 
-  user.save((err, user) => {
-    if (err) {
-      res.status(500).json({ message: err });
-      return;
-    }
-
-    if (roles) {
-      Role.find(
-        {
-          name: { $in: req.body.roles },
-        },
-        (err, roles) => {
-          if (err) {
-            res.status(500).json({ message: err });
-            return;
-          }
-
-          user.roles = roles.map((role) => role._id);
-          user.save((err) => {
-            if (err) {
-              res.status(500).json({ message: err });
-              return;
-            }
-            res.json({ message: "User was reqistered successfully" });
-          });
+      user.save((err, user) => {
+        if (err) {
+          res.status(500).json({ message: err });
+          return;
         }
-      );
-    } else {
-      Role.findOne(
-        {
-          name: "client",
-        },
-        (err, role) => {
-          if (err) {
-            res.status(500).json({ message: err });
-            return;
-          }
-          user.roles = [role._id];
-          user.save((err) => {
-            if (err) {
-              res.status(500).json({ message: err });
-              return;
-            }
-            res.json({ message: "User was registered successfully" });
-          });
-        }
-      );
+        res.json({ message: "User was reqistered successfully" });
+      });
     }
-  });
+  );
 };
 
 exports.signin = (req, res) => {
-  const { email, password } = req.body;
-  User.findOne({
-    email,
-  })
-    .populate("roles", "-__v")
-    .exec((err, user) => {
+  const { email, password, role } = req.body;
+
+  Role.findOne(
+    {
+      name: role,
+    },
+    (err, role) => {
       if (err) {
         res.status(500).json({ message: err });
         return;
       }
 
-      if (!user) {
-        return res.status(404).json({
-          message: "User Not Found",
-        });
-      }
+      User.findOne(
+        {
+          email,
+          role: role._id,
+        },
+        (err, user) => {
+          if (err) {
+            res.status(500).json({ message: err });
+            return;
+          }
 
-      let valid = bcrypt.compareSync(password, user.password);
+          if (!user) {
+            return res.status(404).json({
+              message: "User Not Found",
+            });
+          }
 
-      if (!valid) {
-        return res.status(401).json({
-          accessToken: null,
-          message: "Invalid Password",
-        });
-      }
+          let valid = bcrypt.compareSync(password, user.password);
 
-      let token = jwt.sign({ id: user.id }, config.secret, {
-        expiresIn: 86400,
-      });
+          if (!valid) {
+            return res.status(401).json({
+              accessToken: null,
+              message: "Invalid Password",
+            });
+          }
 
-      let authorities = [];
+          let token = jwt.sign({ id: user.id }, config.secret, {
+            expiresIn: 86400,
+          });
 
-      for (let i = 0; i < user.roles.length; i++) {
-        authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
-      }
+          const { _id: id, firstname, lastname, phoneno, email } = user;
 
-      const { _id: id, firstname, lastname, phoneno, email } = user;
-
-      res.status(200).json({
-        id,
-        firstname,
-        lastname,
-        email,
-        phoneno,
-        roles: authorities,
-        accessToken: token,
-      });
-    });
+          res.status(200).json({
+            id,
+            firstname,
+            lastname,
+            email,
+            phoneno,
+            role: role.name,
+            accessToken: token,
+          });
+        }
+      );
+    }
+  );
 };
