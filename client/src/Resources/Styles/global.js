@@ -75,7 +75,6 @@ export const LinkButton = styled(Link)`
   font-weight: 500;
   line-height: 1.75;
   border-radius: 4px;
-  letter-spacing: 0.09857em;
   text-align: center;
   text-decoration: none;
 
@@ -86,8 +85,7 @@ export const LinkButton = styled(Link)`
   color: ${({ primary, secondary, warning }) =>
     primary || secondary ? "#fff" : warning ? "#000015" : "#061119"};
   background-color: ${({ primary, secondary, warning }) =>
-    primary ? "#CA5CFA" : warning ? "#F0E20E" : secondary ? "#454D4A" : "#fff"};
-  border: 1px solid #8014f7;
+    primary ? "#014da3" : warning ? "#F0E20E" : secondary ? "#454D4A" : "#fff"};
 
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
@@ -98,15 +96,7 @@ export const LinkButton = styled(Link)`
   border: none;
 
   &:hover {
-    background-color: ${({ primary, secondary, warning }) =>
-      primary
-        ? "#8014F7"
-        : secondary
-        ? "#7A8087"
-        : warning
-        ? "#515705"
-        : "#8014F7"};
-    color: ${({ primary }) => (primary ? "#061119" : "#fff")};
+    opacity: 0.9;
   }
 
   @media screen and (max-width: 960px) {
