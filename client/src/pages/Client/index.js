@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../../services/user.service";
-import { Navbar } from "../../components";
+import { Navbar, OrderForm } from "../../components";
 
 export default function Client() {
   const [content, setContent] = useState(undefined);
@@ -25,6 +25,7 @@ export default function Client() {
     <div>
       <Navbar />
       {content && <h1>{content}</h1>}
+      <OrderForm />
     </div>
   );
 }
