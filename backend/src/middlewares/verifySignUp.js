@@ -3,19 +3,22 @@ const ROLES = db.ROLES;
 const User = db.user;
 
 const checkDuplicateEmail = (req, res, next) => {
-  User.findOne({
-    email: req.body.email,
-  }).exec((err, user) => {
-    if (err) {
-      res.status(500).json({ message: err });
-      return;
+  User.findOne(
+    {
+      email: req.body.email,
+    },
+    (err, user) => {
+      if (err) {
+        res.status(500).json({ message: err });
+        return;
+      }
+      if (user) {
+        res.status(400).json({ message: "failed! Email is already in use" });
+        return;
+      }
+      next();
     }
-    if (user) {
-      res.status(400).json({ message: "failed! Email is already in use" });
-      return;
-    }
-    next();
-  });
+  );
 };
 
 const checkRolesExisted = (req, res, next) => {

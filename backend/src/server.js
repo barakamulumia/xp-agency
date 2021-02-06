@@ -41,6 +41,7 @@ db.mongoose
 
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
+require("./routes/order.routes")(app);
 
 app.get("/", (_req, res) => res.send("Hello World!"));
 
