@@ -25,6 +25,14 @@ app.use(
   })
 );
 
+app.use(function (_req, res, next) {
+  res.header(
+    "Access-Control-Allow-Headers",
+    "x-access-token, Origin, Content-Type, Accept"
+  );
+  next();
+});
+
 db.mongoose
   .connect(URI, {
     useNewUrlParser: true,
@@ -42,6 +50,7 @@ db.mongoose
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
 require("./routes/order.routes")(app);
+require("./routes/driver.routes")(app);
 
 app.get("/", (_req, res) => res.send("Hello World!"));
 
