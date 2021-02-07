@@ -1,8 +1,9 @@
 const authJwt = require("./authJwt");
 const verifySignUp = require("./verifySignUp");
-const orderWare = require("./orderware");
+const verifyXpressDriver = require("./verifyXpressDriver");
+
 module.exports = {
   authJwt,
   verifySignUp,
-  orderWare,
+  verifyXpressDriver,
 };
