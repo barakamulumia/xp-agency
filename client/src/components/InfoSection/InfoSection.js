@@ -10,9 +10,9 @@ import {
   TopLine,
   Heading,
   SubTitle,
-  Img,
-  ImgWrapper,
 } from "./InfoSection.elements";
+
+import { Image } from "../index";
 
 const InfoSection = ({ topline, headline, description, btn, img }) => {
   return (
@@ -34,9 +34,7 @@ const InfoSection = ({ topline, headline, description, btn, img }) => {
               </TextWrapper>
             </InfoColumn>
             <InfoColumn>
-              <ImgWrapper start={img.start}>
-                <Img src={img.src} alt={img.alt} />
-              </ImgWrapper>
+              <Image src={img.src} start={img.start} alt={img.alt} />
             </InfoColumn>
           </InfoRow>
         </Container>

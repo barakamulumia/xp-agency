@@ -66,18 +66,3 @@ export const SubTitle = styled.p`
   line-height: 24px;
   color: #1c2237;
 `;
-
-export const ImgWrapper = styled.div`
-  max-width: 555px;
-  display: flex;
-  justify-content: ${({ start }) => (start ? "flex-start" : "flex-end")};
-`;
-
-export const Img = styled.img`
-  padding-right: 0;
-  border: 0;
-  max-width: 100%;
-  vertical-align: middle;
-  display: inline-block;
-  max-height: 500px;
-`;
