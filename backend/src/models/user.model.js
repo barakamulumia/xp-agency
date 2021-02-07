@@ -8,6 +8,12 @@ const User = mongoose.model(
     phoneno: String,
     email: String,
     password: String,
+    rating: {
+      type: Number,
+      default: 0,
+      min: 0,
+      max: 10,
+    },
     role: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Role",
