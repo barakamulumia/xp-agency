@@ -8,6 +8,7 @@ db.mongoose = mongoose;
 db.user = require("./user.model");
 db.role = require("./role.model");
 db.order = require("./order.model");
+db.driver = require("./driver.model");
 
 db.ROLES = ["client", "driver", "admin"];
 
