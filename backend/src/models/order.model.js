@@ -24,7 +24,7 @@ const Order = mongoose.model(
       placeId: String,
       latLng: String,
     },
-    amount: {
+    charges: {
       type: Number,
     },
     status: {
