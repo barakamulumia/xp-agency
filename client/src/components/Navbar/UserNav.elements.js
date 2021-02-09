@@ -6,6 +6,7 @@ export const UserLogo = styled(Link)`
   color: #fff;
   justify-self: flex-start;
   cursor: pointer;
+  font-weight: 500;
   text-decoration: none;
   font-size: 1.5rem;
   display: flex;
@@ -23,9 +24,11 @@ export const DashBoardIcon = styled(MdDashboard)`
 export const NavLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   display: flex;
+  font-weight: 500;
   align-items: center;
   justify-content: center;
   margin-right: 10px;
+  color: ${({ primary }) => (primary ? "#00f" : "#fff")};
 `;
