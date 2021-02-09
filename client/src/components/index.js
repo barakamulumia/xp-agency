@@ -7,3 +7,5 @@ export { default as SignIn } from "./Account/SignIn";
 export { default as ServiceCard } from "./ServiceCard/ServiceCard";
 export { default as OrderForm } from "./OrderForm/OderForm";
 export { default as Image } from "./Image/image";
+export { default as XpressRegForm } from "./XpressRegForm";
+export { default as TruckCard } from "./TruckCard/TruckCard";
