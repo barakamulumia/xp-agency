@@ -15,7 +15,6 @@ import { UserLogo, DashBoardIcon, NavLink } from "./UserNav.elements";
 import {
   MdAccountCircle,
   MdMail,
-  MdNotifications,
   MdVerifiedUser,
   MdLock,
 } from "react-icons/md";
@@ -109,7 +108,7 @@ export default function UserNav({ user, logOutCallBack }) {
       className={classes.profmenu}
     >
       <MenuItem onClick={handleMenuClose}>
-        <NavLink to="/profile">
+        <NavLink primary to="/profile">
           <IconButton color="inherit">
             <MdVerifiedUser />
           </IconButton>
@@ -117,7 +116,11 @@ export default function UserNav({ user, logOutCallBack }) {
         </NavLink>
       </MenuItem>
       <MenuItem onClick={logOutCallBack}>
-        <NavLink to="/goodbye" onClick={(e) => e.preventDefault()}>
+        <NavLink
+          primary={true}
+          to="/goodbye"
+          onClick={(e) => e.preventDefault()}
+        >
           <IconButton color="inherit">
             <MdLock />
           </IconButton>
@@ -139,20 +142,14 @@ export default function UserNav({ user, logOutCallBack }) {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MdMail />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <MdNotifications />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
+        <NavLink primary={true} to="/notifications">
+          <IconButton aria-label="show 4 new mails" color="inherit">
+            <Badge badgeContent={4} color="secondary">
+              <MdMail />
+            </Badge>
+          </IconButton>
+          <p>Messages</p>
+        </NavLink>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -176,18 +173,22 @@ export default function UserNav({ user, logOutCallBack }) {
             <DashBoardIcon />
             {formatName(user.firstname)}
           </UserLogo>
+          <br />
+
           <div className={classes.grow} />
+          <div>
+            {user.role === "client" && (
+              <NavLink to="/order-truck">Order Truck</NavLink>
+            )}
+          </div>
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MdMail />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <MdNotifications />
-              </Badge>
-            </IconButton>
+            <NavLink to="/notifications">
+              <IconButton aria-label="show 4 new mails" color="inherit">
+                <Badge badgeContent={4} color="secondary">
+                  <MdMail />
+                </Badge>
+              </IconButton>
+            </NavLink>
             <IconButton
               edge="end"
               aria-label="account of current user"
