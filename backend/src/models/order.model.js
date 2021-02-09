@@ -14,18 +14,28 @@ const Order = mongoose.model(
       ref: "User",
       required: "Client is required",
     },
-    pickUpAddress: {
+    pickUp: {
       address: String,
       placeId: String,
-      latLng: String,
+      latlng: {
+        lat: Number,
+        lng: Number,
+      },
     },
     destination: {
       address: String,
       placeId: String,
-      latLng: String,
+      latlng: {
+        lat: Number,
+        lng: Number,
+      },
     },
     charges: {
       type: Number,
+    },
+    load: {
+      type: String,
+      default: "Designated",
     },
     status: {
       type: String,

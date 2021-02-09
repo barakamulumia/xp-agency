@@ -6,8 +6,9 @@ exports.creteOrder = (req, res, next) => {
     moveType,
     clientId,
     driverId,
-    pickUpAddress,
+    pickUp,
     destination,
+    load,
     charges,
   } = req.body;
 
@@ -15,8 +16,9 @@ exports.creteOrder = (req, res, next) => {
     moveType,
     clientId,
     driverId,
-    pickUpAddress,
+    pickUp,
     destination,
+    load,
     charges,
     date: new Date(),
     status: "pending",
