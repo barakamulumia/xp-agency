@@ -1,4 +1,4 @@
-import { Paper, Avatar } from "@material-ui/core";
+import { Paper, Avatar, FormControl } from "@material-ui/core";
 import styled from "styled-components";
 import { Button } from "../../Resources/Styles/global";
 
@@ -27,4 +27,12 @@ export const SubmitButton = styled(Button)`
 export const FormAvatar = styled(Avatar)`
   background-color: #f48fb1;
   margin: 8px;
+`;
+
+export const FormControlWrapper = styled(FormControl)`
+  width: 100%;
+`;
+
+export const FormContainer = styled.div`
+  width: 100%;
 `;
