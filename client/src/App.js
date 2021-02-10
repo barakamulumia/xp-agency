@@ -13,6 +13,7 @@ import {
   Driver,
   Admin,
   Profile,
+  OrderTruck,
 } from "./pages";
 
 export default function App() {
@@ -43,6 +44,7 @@ export default function App() {
 
         <Route exact path="/profile" component={Profile} />
 
+        <Route exact path="/client/order-truck" component={OrderTruck} />
         <Route path="/client" component={Client} />
         <Route path="/driver" component={Driver} />
         <Route path="/admin" component={Admin} />

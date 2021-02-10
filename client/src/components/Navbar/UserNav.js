@@ -178,7 +178,7 @@ export default function UserNav({ user, logOutCallBack }) {
           <div className={classes.grow} />
           <div>
             {user.role === "client" && (
-              <NavLink to="/order-truck">Order Truck</NavLink>
+              <NavLink to="/client/order-truck">Order Truck</NavLink>
             )}
           </div>
           <div className={classes.sectionDesktop}>
