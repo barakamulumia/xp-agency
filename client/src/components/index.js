@@ -9,3 +9,4 @@ export { default as OrderForm } from "./OrderForm/OderForm";
 export { default as Image } from "./Image/image";
 export { default as XpressRegForm } from "./XpressRegForm";
 export { default as TruckCard } from "./TruckCard/TruckCard";
+export { default as OrderCard } from "./OrderCard/OrderCard";
