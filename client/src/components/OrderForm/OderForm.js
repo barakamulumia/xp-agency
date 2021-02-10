@@ -32,7 +32,7 @@ const OderForm = () => {
     latlng: "",
     placeId: "",
   });
-  const [pickUp, setPickUp] = useState({
+  const [pickup, setPickUp] = useState({
     address: "",
     latlng: "",
     placeId: "",
@@ -70,7 +70,7 @@ const OderForm = () => {
           : moveType === "om"
           ? `${approxFeet} Ft`
           : "Designated",
-      pickUp,
+      pickup,
       destination,
       charges: 4000,
     };
@@ -79,10 +79,6 @@ const OderForm = () => {
       (res) => console.log(res),
       (err) => console.log(err)
     );
-
-    console.log({
-      orderObj,
-    });
   };
   const isHouseMoving = () => moveType === "hm";
   const isOfficeMoving = () => moveType === "om";

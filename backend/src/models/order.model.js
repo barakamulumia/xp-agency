@@ -14,7 +14,7 @@ const Order = mongoose.model(
       ref: "User",
       required: "Client is required",
     },
-    pickUp: {
+    pickup: {
       address: String,
       placeId: String,
       latlng: {
@@ -39,7 +39,7 @@ const Order = mongoose.model(
     },
     status: {
       type: String,
-      enum: ["idle", "pending", "cancelled", "successfull"],
+      enum: ["pending", "cancelled", "in-progress", "successfull"],
       default: "idle",
     },
     dateTime: {
