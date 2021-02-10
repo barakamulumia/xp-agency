@@ -8,3 +8,4 @@ export { default as Client } from "./Client";
 export { default as Driver } from "./Driver";
 export { default as Admin } from "./Admin";
 export { default as Profile } from "./Profile";
+export { default as OrderTruck } from "./Client/order-truck";
