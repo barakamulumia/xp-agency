@@ -56,6 +56,7 @@ exports.getAllOrdersByUserId = (req, res, next) => {
         res.status(404).json({
           message: "orders not found",
         });
+        return;
       }
       res.status(200).json({
         orders,
