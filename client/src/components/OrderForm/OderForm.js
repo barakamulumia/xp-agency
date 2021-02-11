@@ -98,7 +98,7 @@ const OderForm = () => {
             <Grid item xs={12}>
               <FormControlWrapper variant="outlined">
                 <InputLabel id="service-select-outlined-label">
-                  Service
+                  What are you moving
                 </InputLabel>
                 <Select
                   labelId="service-select-outlined-label"
@@ -156,13 +156,13 @@ const OderForm = () => {
             )}
             <Grid item xs={12}>
               <FormContainer>
-                <p>Pick Up</p>
+                <p>Pick Up Location</p>
                 <MapSearchInput SET_LOCATION={handlePickUpChange} />
               </FormContainer>
             </Grid>
             <Grid item xs={12}>
               <FormContainer>
-                <p>Destination</p>
+                <p>Destination Of Your Goods</p>
                 <MapSearchInput SET_LOCATION={handleDestinationChange} />
               </FormContainer>
             </Grid>
