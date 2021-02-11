@@ -18,6 +18,7 @@ export const OrderCardContainer = styled.div`
   justify-content: start;
   align-items: center;
 `;
+
 export const OrderCardHeader = styled.p`
   font-size: 2.5em;
   font-weight: 500;
@@ -27,6 +28,7 @@ export const OrderCardHeader = styled.p`
   width: 100%;
   text-align: center;
 `;
+
 export const OrdersNav = styled(Paper)`
   width: 100%;
   display: flex;
