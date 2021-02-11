@@ -14,10 +14,8 @@ export const OrderContainer = styled(Paper)`
 `;
 
 export const OrderCardHeader = styled.p`
-  line-height: 1.2;
-  font-weight: 499;
-  font-size: 1.7rem;
-  letter-spacing: 4px;
+  font-weight: 500;
+  font-size: 1.3rem;
 `;
 
 export const OrderDestination = styled.p`
