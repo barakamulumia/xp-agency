@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-// import { Link, useHistory } from "react-router-dom";
-// import AuthService from "../../services/auth.service";
 
 import {
   MdDirectionsCar,
@@ -24,7 +22,6 @@ import {
   SubmitButton,
   FormPaper,
   FormAvatar,
-  FormContainer,
 } from "../Account/Account.elements";
 
 export default function XpressRegister() {
@@ -32,7 +29,6 @@ export default function XpressRegister() {
     reValidateMode: "onChange",
     mode: "onBlur",
   });
-  // const history = useHistory();
 
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState("");
@@ -118,6 +114,15 @@ export default function XpressRegister() {
                 name="address"
                 autoComplete="address"
               />
+            </Grid>
+            <Grid>
+              <p
+                style={{
+                  padding: "5px 20px",
+                }}
+              >
+                By clicking finish you agree to the terms and conditions
+              </p>
             </Grid>
           </Grid>
           <br />
