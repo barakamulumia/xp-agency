@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
+
 import destination from "../../images/Destination.svg";
 import { Navbar, XpressRegForm, Image } from "../../components";
 import UserService from "../../services/user.service";
@@ -7,15 +9,15 @@ import { Box } from "./driver.elements";
 import { Grid } from "@material-ui/core";
 
 export default function Driver() {
-  const [content, setContent] = useState(undefined);
+  const [user, setUser] = useState(undefined);
 
   useEffect(() => {
     UserService.getDriverBoard().then(
       (response) => {
-        setContent(response.data.content);
+        setUser(response.data.content);
       },
       (error) => {
-        setContent(
+        setUser(
           (error.response &&
             error.response.data &&
             error.response.data.message) ||
@@ -25,6 +27,11 @@ export default function Driver() {
       }
     );
   }, []);
+
+  if (typeof user !== "object") {
+    return <Redirect to="/" />;
+  }
+
   return (
     <Box>
       <Container>

@@ -2,7 +2,7 @@ export const services = [
   {
     heading: "Freight Forwarding",
     content:
-      " Deliver as you wish with our efficient safe and reliable moving resources. We provide product moving solutions to help you handle your personal mobility services.",
+      "Deliver as you wish with our efficient safe and reliable moving resources. We provide product moving solutions to help you handle your personal mobility services.",
     footer: "Let us bring your products to the world",
   },
   {
