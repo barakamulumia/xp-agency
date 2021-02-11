@@ -38,7 +38,7 @@ const Footer = () => {
           amaizing offers
         </FooterHeading>
         <FooterSubHeading>You can opt out anytime</FooterSubHeading>
-        <Form>
+        <Form onSubmit={(e) => e.preventDefault()}>
           <FormInput name="email" type="email" placeholder="Your Email" />
           <Button fontBig>Subscribe</Button>
         </Form>
@@ -49,17 +49,17 @@ const Footer = () => {
             <FooterLinkTitle>Discover</FooterLinkTitle>
             <FooterLink to="/about-us">Who are we</FooterLink>
             <FooterLink to="/how-it-works">How It Works</FooterLink>
-            <FooterLink to="/testimonials">Testimonials</FooterLink>
             <FooterLink to="/terms-of-sevice">Terms of service</FooterLink>
+            <FooterLink to="/contact-us">Contact Us</FooterLink>
           </FooterLinksItem>
         </FooterLinksWrapper>
         <FooterLinksWrapper>
           <FooterLinksItem>
             <FooterLinkTitle>Services</FooterLinkTitle>
-            <FooterLink to="/how-it-works">Earn</FooterLink>
-            <FooterLink to="/testimonials">Freight</FooterLink>
-            <FooterLink to="/terms-of-sevice">House Moving</FooterLink>
-            <FooterLink to="/terms-of-sevice">Office Moving</FooterLink>
+            <FooterLink to="/driver/sign-in">Earn</FooterLink>
+            <FooterLink to="/services">Freight</FooterLink>
+            <FooterLink to="/services">House Moving</FooterLink>
+            <FooterLink to="/services">Office Moving</FooterLink>
           </FooterLinksItem>
         </FooterLinksWrapper>
       </FooterLinksContainer>
