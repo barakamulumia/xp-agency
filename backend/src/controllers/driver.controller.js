@@ -2,7 +2,7 @@ const db = require("../models");
 const User = db.user;
 const Driver = db.driver;
 
-exports.XpressCertApplication = (req, res, next) => {
+exports.completeRegistration = (req, res, next) => {
   const { userId, truckno, dlno, address } = req.body;
   const newDriver = new Driver({
     userId,
