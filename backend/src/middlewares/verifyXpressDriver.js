@@ -15,7 +15,7 @@ const checkDuplicateUserId = (req, res, next) => {
       }
       if (driver) {
         res.status(400).json({
-          message: "driver with user id " + userId + " already exists ",
+          message: "driver has already been registered",
         });
         return;
       }
