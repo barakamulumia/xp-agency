@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 import destination from "../../images/Destination.svg";
 import { Navbar, XpressRegForm, Image } from "../../components";
@@ -14,7 +14,7 @@ export default function Driver() {
   useEffect(() => {
     UserService.getDriverBoard().then(
       (response) => {
-        setUser(response.data.content);
+        setUser(response.data);
       },
       (error) => {
         setUser(
@@ -28,18 +28,20 @@ export default function Driver() {
     );
   }, []);
 
-  if (typeof user !== "object") {
-    return <Redirect to="/" />;
-  }
+  // if (!user) {
+  //   return <Redirect to="/" />;
+  // }
 
   return (
     <Box>
       <Container>
         <Navbar />
         <Grid container spacing={2} justify="center" alignContent="center">
-          <Grid item xs={12} sm={6} md={6}>
-            <XpressRegForm />
-          </Grid>
+          {user && typeof user === "object" && (
+            <Grid item xs={12} sm={6} md={6}>
+              <XpressRegForm USER_ID={user.userId} />
+            </Grid>
+          )}
           <Grid item xs={12} sm={6} md={6}>
             <Image start="true" alt="my current location" src={destination} />
           </Grid>

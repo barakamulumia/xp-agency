@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 
 import UserService from "../../services/user.service";
 import {
@@ -36,6 +36,7 @@ export default function Client() {
   const setActiveIndex = (id) => {
     setActiveId(id);
   };
+
   useEffect(() => {
     UserService.getClientBoard().then(
       (response) => {
@@ -53,9 +54,9 @@ export default function Client() {
     );
   }, []);
 
-  if (typeof user !== "object") {
-    return <Redirect to="/" />;
-  }
+  // if (typeof user !== "object") {
+  //   return <Redirect to="/" />;
+  // }
 
   return (
     <div

@@ -41,12 +41,14 @@ const OrderDetails = ({ order }) => {
         <OrderItem>Charges: </OrderItem>
         <OrderValue>{order.charges}</OrderValue>
       </OrderColumn>
-      <OrderColumn>
-        <OrderItem>Driver</OrderItem>
-        <OrderValue>
-          {driver.firstname} - {driver.truckno}
-        </OrderValue>
-      </OrderColumn>
+      {driver && (
+        <OrderColumn>
+          <OrderItem>Driver</OrderItem>
+          <OrderValue>
+            {driver.firstname} - {driver.truckno}
+          </OrderValue>
+        </OrderColumn>
+      )}
       <OrderColumn>
         <OrderItem>Date: </OrderItem>
         <OrderValue>{new Date(order.dateTime).toLocaleString()}</OrderValue>
