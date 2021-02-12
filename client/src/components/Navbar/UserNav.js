@@ -117,7 +117,7 @@ export default function UserNav({ user, logOutCallBack }) {
       </MenuItem>
       <MenuItem onClick={logOutCallBack}>
         <NavLink
-          primary={true}
+          primary="true"
           to="/goodbye"
           onClick={(e) => e.preventDefault()}
         >
