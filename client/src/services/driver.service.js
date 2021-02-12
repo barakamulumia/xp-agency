@@ -10,6 +10,15 @@ class DriverService {
       },
     });
   }
+
+  completeRegistration(userId, truckno, dlno, address) {
+    return axios.post(API_URL + "complete-registration", {
+      userId,
+      truckno,
+      dlno,
+      address,
+    });
+  }
 }
 
 export default new DriverService();

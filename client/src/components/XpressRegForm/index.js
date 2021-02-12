@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DriverService from "../../services/driver.service";
 
 import {
   MdDirectionsCar,
@@ -24,7 +25,7 @@ import {
   FormAvatar,
 } from "../Account/Account.elements";
 
-export default function XpressRegister() {
+export default function XpressRegister({ USER_ID }) {
   const { register, handleSubmit } = useForm({
     reValidateMode: "onChange",
     mode: "onBlur",
@@ -36,8 +37,22 @@ export default function XpressRegister() {
   const onSubmit = (user) => {
     const { truckno, dlno, address } = user;
     setLoading(true);
-
-    console.log(truckno, dlno, address);
+    DriverService.completeRegistration(USER_ID, truckno, dlno, address).then(
+      (response) => {
+        setMessage(response.data.message);
+        setLoading(false);
+      },
+      (error) => {
+        setMessage(
+          (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+            error.message ||
+            error.toString()
+        );
+        setLoading(false);
+      }
+    );
   };
 
   return (
