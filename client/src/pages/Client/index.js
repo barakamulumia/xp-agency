@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 // import { Redirect } from "react-router-dom";
-
+/**
+ * @todo
+ * make bg sticky
+ */
 import UserService from "../../services/user.service";
+import OrderService from "../../services/order.service";
+
 import {
   Navbar,
   OrderCard,
@@ -15,10 +20,12 @@ import {
   Box,
   OrderCardContainer,
   OrdersNav,
-  OrderLink,
+  FilterButton,
   OrderCardHeader,
+  Notification,
+  Message,
 } from "./client.elements";
-import { Container } from "../../Resources/Styles/global";
+import { Container, LinkButton } from "../../Resources/Styles/global";
 import {
   MdAccessAlarm,
   MdWarning,
@@ -30,28 +37,41 @@ import { Grid } from "@material-ui/core";
 
 export default function Client() {
   const [user, setUser] = useState(undefined);
-
+  const [orders, setOrders] = useState([]);
   const [activeId, setActiveId] = useState(undefined);
+  const [filter, setFilter] = useState("in-progress");
+
+  const filterOrders = (orders, filter) =>
+    orders.filter((order) => order.status === filter);
 
   const setActiveIndex = (id) => {
     setActiveId(id);
   };
 
   useEffect(() => {
-    UserService.getClientBoard().then(
-      (response) => {
-        setUser(response.data);
-      },
-      (error) => {
-        setUser(
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-            error.message ||
-            error.toString()
-        );
-      }
-    );
+    UserService.getClientBoard()
+      .then((response) => {
+        if (response.status === 200) {
+          const { userId, role } = response.data;
+          setUser({
+            userId,
+            role,
+          });
+          OrderService.getAllOrders(userId, role).then((response) => {
+            if (response.status === 200) {
+              setOrders(response.data.orders);
+            }
+          });
+        } else {
+          setUser(undefined);
+          setOrders(undefined);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setUser(undefined);
+        setOrders(undefined);
+      });
   }, []);
 
   // if (typeof user !== "object") {
@@ -75,43 +95,67 @@ export default function Client() {
               <OrderCardContainer>
                 <OrderCardHeader>My Trips</OrderCardHeader>
                 <OrdersNav>
-                  <OrderLink variant="contained" startIcon={<MdAccessAlarm />}>
+                  <FilterButton
+                    variant="contained"
+                    onClick={() => setFilter("pending")}
+                    startIcon={<MdAccessAlarm />}
+                  >
                     Pending
-                  </OrderLink>
-                  <OrderLink
+                  </FilterButton>
+                  <FilterButton
+                    onClick={() => setFilter("cancelled")}
                     variant="contained"
                     color="secondary"
                     startIcon={<MdWarning />}
                   >
                     Cancelled
-                  </OrderLink>
-                  <OrderLink variant="contained" startIcon={<MdImportExport />}>
+                  </FilterButton>
+                  <FilterButton
+                    onClick={() => setFilter("in-progress")}
+                    variant="contained"
+                    startIcon={<MdImportExport />}
+                  >
                     InProgress
-                  </OrderLink>
-                  <OrderLink
+                  </FilterButton>
+                  <FilterButton
+                    onClick={() => setFilter("successfull")}
                     variant="contained"
                     color="primary"
                     startIcon={<MdCheck />}
                   >
                     Successfull
-                  </OrderLink>
+                  </FilterButton>
                 </OrdersNav>
-                {user &&
-                  user.orders.map((order) => (
-                    <OrderCard
-                      order={order}
-                      key={order._id}
-                      SET_ACTIVE_INDEX={setActiveIndex}
-                    />
-                  ))}
+                {orders.length ? (
+                  filterOrders(orders, filter).length ? (
+                    filterOrders(orders, filter).map((order) => (
+                      <OrderCard
+                        order={order}
+                        key={order._id}
+                        SET_ACTIVE_INDEX={setActiveIndex}
+                      />
+                    ))
+                  ) : (
+                    <Notification>
+                      <Message>No orders in this category</Message>
+                      <br />
+                      <LinkButton primary="true" to="/client/order-truck">
+                        Place Your Order
+                      </LinkButton>
+                    </Notification>
+                  )
+                ) : (
+                  ""
+                )}
               </OrderCardContainer>
             </Grid>
             <Grid item>
-              {user && (
+              {orders.length && filterOrders(orders, filter).length && (
                 <OrderDetails
                   order={
-                    user.orders.find((order) => order._id === activeId) ||
-                    user.orders[0]
+                    filterOrders(orders, filter).find(
+                      (order) => order._id === activeId
+                    ) || orders[0]
                   }
                 />
               )}
