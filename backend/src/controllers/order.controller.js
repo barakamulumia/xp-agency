@@ -40,28 +40,45 @@ exports.creteOrder = (req, res, next) => {
 };
 
 exports.getAllOrdersByUserId = (req, res, next) => {
-  const { clientid: clientId } = req.headers;
-  Order.find(
-    {
-      clientId,
-    },
-    (err, orders) => {
-      if (err) {
-        res.status(500).json({
-          message: err,
+  const { userid, role } = req.headers;
+  let FIELD_TYPE = null;
+
+  if (role === "client") {
+    FIELD_TYPE = "clientId";
+  } else if (role === "driver") {
+    FIELD_TYPE = "driverId";
+  }
+
+  if (FIELD_TYPE) {
+    Order.find(
+      {
+        [FIELD_TYPE]: userid,
+      },
+      (err, orders) => {
+        if (err) {
+          res.status(500).json({
+            message: err,
+          });
+          return;
+        }
+
+        if (!orders) {
+          res.status(404).json({
+            message: "orders not found",
+          });
+          return;
+        }
+
+        res.status(200).json({
+          orders,
         });
-        return;
+        next();
       }
-      if (!orders) {
-        res.status(404).json({
-          message: "orders not found",
-        });
-        return;
-      }
-      res.status(200).json({
-        orders,
-      });
-      next();
-    }
-  );
+    );
+  } else {
+    res.status(401).json({
+      message: "Invalid request headers",
+    });
+    return;
+  }
 };
