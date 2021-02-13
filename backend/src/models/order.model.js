@@ -40,7 +40,7 @@ const Order = mongoose.model(
     status: {
       type: String,
       enum: ["pending", "cancelled", "in-progress", "successfull"],
-      default: "idle",
+      default: "pending",
     },
     dateTime: {
       type: Date,
