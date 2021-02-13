@@ -1,5 +1,4 @@
 const db = require("../models");
-const Order = db.order;
 const User = db.user;
 
 exports.allAccess = (_req, res) => {
@@ -22,44 +21,39 @@ exports.driverBoard = (req, res) => {
       }
       if (!driver) {
         res.status(404).json({
-          message: "orders not found",
+          message: "driver not found",
         });
         return;
       }
-      const { _id: userId, email, firstname, lastname, phoneno } = driver;
-
       res.status(200).json({
-        userId,
-        email,
-        firstname,
-        lastname,
-        phoneno,
+        userId: driver._id,
+        role: "driver",
       });
     }
   );
 };
 
 exports.clientBoard = (req, res) => {
-  Order.find(
+  User.findOne(
     {
-      clientId: req.userId,
+      _id: req.userId,
     },
-    (err, orders) => {
+    (err, client) => {
       if (err) {
         res.status(500).json({
           message: err,
         });
         return;
       }
-      if (!orders) {
+      if (!client) {
         res.status(404).json({
           message: "orders not found",
         });
         return;
       }
       res.status(200).json({
+        userId: client._id,
         role: "client",
-        orders,
       });
     }
   );
