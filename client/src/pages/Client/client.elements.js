@@ -36,9 +36,31 @@ export const OrdersNav = styled(Paper)`
   background-color: rgba(0, 0, 0, 0.7) !important;
 `;
 
-export const OrderLink = styled(Button)`
+export const FilterButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-content: center;
   margin: 5px;
+`;
+
+export const Notification = styled(Paper)`
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  width: 100%;
+  height: 300px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+`;
+
+export const Message = styled.p`
+  font-size: 2.5em;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 8px;
+  width: 100%;
+  text-align: center;
 `;
