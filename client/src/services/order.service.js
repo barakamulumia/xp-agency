@@ -3,10 +3,11 @@ import axios from "axios";
 const API_URL = "http://localhost:8080/api/orders/";
 
 class OrderService {
-  getAllOrders(userId) {
-    return axios.get(API_URL + "client", {
+  getAllOrders(userid, role) {
+    return axios.get(API_URL + "user", {
       headers: {
-        userId,
+        userid,
+        role,
       },
     });
   }
