@@ -6,6 +6,8 @@ export const Box = styled(Grid)`
   background-size: cover;
   min-height: 100vh;
   background-position: center;
+  background-attachment: fixed;
+  padding-bottom: 30px;
 `;
 
 export const OrderCardContainer = styled.div`

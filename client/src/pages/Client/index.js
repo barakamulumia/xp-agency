@@ -79,16 +79,12 @@ export default function Client() {
   // }
 
   return (
-    <div
-      style={{
-        backgroundColor: "#fdfdf8",
-      }}
-    >
-      <Container>
-        <Navbar />
-        <ClientInfoSection {...ClientInfo} />
-      </Container>
+    <div>
       <Box container justify="space-between">
+        <Container>
+          <Navbar />
+          <ClientInfoSection {...ClientInfo} />
+        </Container>
         <Container>
           <Grid container justify="space-between">
             <Grid item>
