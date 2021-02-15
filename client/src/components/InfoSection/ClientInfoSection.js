@@ -16,7 +16,7 @@ import { Image } from "../index";
 const InfoSection = ({ topline, headline, description, img, btn }) => {
   return (
     <Fragment>
-      <InfoSec>
+      <InfoSec dark topMargin>
         <Container>
           <InfoRow>
             <InfoColumn>

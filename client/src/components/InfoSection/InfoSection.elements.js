@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const InfoSec = styled.div`
   color: #101522;
   padding: 160px 0;
-  background: #fdfdf8;
-
+  background-color: ${({ dark }) =>
+    dark ? "rgba(235, 235, 235, 0.7)" : "#fff"};
+  margin-top: ${({ topMargin }) => (topMargin ? "30px" : "none")};
   /* background-image: url("https://i.postimg.cc/nhkFjLrr/kepple-port.jpg");
   background-repeat: no-repeat;
   background-size: cover; */
@@ -54,8 +55,7 @@ export const TopLine = styled.div`
 
 export const Heading = styled.h1`
   margin-bottom: 24px;
-  font-size: 28px;
-  line-height: 48px;
+  font-size: 48px;
   color: #1c2237;
 `;
 
