@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import OrderService from "../../services/order.service";
+import { useHistory } from "react-router-dom";
 
 import {
   Select,
@@ -19,6 +20,7 @@ import {
   SubmitButton,
   FormControlWrapper,
   FormContainer,
+  Label,
 } from "./OrderForm.elements";
 import { FaHelicopter } from "react-icons/fa";
 import MapSearchInput from "../Map/mapinput";
@@ -37,6 +39,7 @@ const OderForm = () => {
     latlng: "",
     placeId: "",
   });
+  const history = useHistory();
 
   const handleMoveTypeChange = (event) => {
     setMoveType(event.target.value);
@@ -76,7 +79,10 @@ const OderForm = () => {
     };
 
     OrderService.makeOrder(orderObj).then(
-      (res) => console.log(res),
+      (res) => {
+        history.push("/client");
+        console.log(res);
+      },
       (err) => console.log(err)
     );
   };
@@ -156,13 +162,13 @@ const OderForm = () => {
             )}
             <Grid item xs={12}>
               <FormContainer>
-                <p>Pick Up Location</p>
+                <Label>Pick Up Location</Label>
                 <MapSearchInput SET_LOCATION={handlePickUpChange} />
               </FormContainer>
             </Grid>
             <Grid item xs={12}>
               <FormContainer>
-                <p>Destination Of Your Goods</p>
+                <Label>Destination Of Your Goods</Label>
                 <MapSearchInput SET_LOCATION={handleDestinationChange} />
               </FormContainer>
             </Grid>
