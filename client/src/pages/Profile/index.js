@@ -2,6 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { Navbar } from "../../components";
 import AuthService from "../../services/auth.service";
+import { Button, ImageBgContainer } from "../../Resources/Styles/global";
+import { Container, Grid } from "@material-ui/core";
+
+import {
+  GreetingLine,
+  ProfileSection,
+  ProfileSectionHeader,
+  PersonalDetailsItem,
+  Transaction,
+  TransactionType,
+  TransactionAmount,
+} from "./profile.elements";
 
 export default function Profile() {
   const [redirect, setRedirect] = useState(null);
@@ -25,29 +37,83 @@ export default function Profile() {
   return (
     <div className="container">
       {userReady ? (
-        <div>
+        <ImageBgContainer>
           <Navbar />
-          <header className="jumbotron">
-            <h3>
-              <strong>{currentUser.firstname}</strong> Profile
-            </h3>
-          </header>
-          <p>
-            <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)}{" "}
-            ...{" "}
-            {currentUser.accessToken.substr(
-              currentUser.accessToken.length - 20
-            )}
-          </p>
-          <p>
-            <strong>Id:</strong> {currentUser.id}
-          </p>
-          <p>
-            <strong>Email:</strong> {currentUser.email}
-          </p>
-          <strong>Authorities:</strong>
-          {currentUser.role && <p>{currentUser.role}</p>}
-        </div>
+          <GreetingLine>
+            Gerretings&nbsp;&nbsp;{currentUser.firstname}
+          </GreetingLine>
+          <Grid container spacing={2} justify="space-between">
+            <Grid item md={5} sm={8} xs={12}>
+              <ProfileSection>
+                <ProfileSectionHeader>
+                  Personal Information
+                </ProfileSectionHeader>
+                <PersonalDetailsItem>
+                  <p>
+                    <strong>Email:</strong>
+                  </p>
+                  <p>{currentUser.email}</p>
+                </PersonalDetailsItem>
+                <PersonalDetailsItem>
+                  <p>
+                    <strong>First Name:</strong>
+                  </p>
+                  <p>{currentUser.firstname}</p>
+                </PersonalDetailsItem>
+                <PersonalDetailsItem>
+                  <p>
+                    <strong>Last Name:</strong>
+                  </p>
+                  <p>{currentUser.lastname}</p>
+                </PersonalDetailsItem>
+                <PersonalDetailsItem>
+                  <p>
+                    <strong>Phone No:</strong>
+                  </p>
+                  <p>{currentUser.phoneno}</p>
+                </PersonalDetailsItem>
+                <Button>Edit Info</Button>
+                <Button>Change Password</Button>
+              </ProfileSection>
+            </Grid>
+            <Grid item md={5} sm={8} xs={12}>
+              <ProfileSection>
+                <ProfileSectionHeader>Transacations</ProfileSectionHeader>
+                <Transaction>
+                  <TransactionType>Xpress Payment</TransactionType>
+                  <TransactionAmount>Ksh: 3000</TransactionAmount>
+                </Transaction>
+                <Transaction>
+                  <TransactionType>Xpress Payment</TransactionType>
+                  <TransactionAmount>Ksh: 3000</TransactionAmount>
+                </Transaction>
+                <Transaction>
+                  <TransactionType>customer deposit</TransactionType>
+                  <TransactionAmount>Ksh: 30,000</TransactionAmount>
+                </Transaction>
+              </ProfileSection>
+            </Grid>
+          </Grid>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: "20px",
+              padding: "10px",
+            }}
+          >
+            <Container maxWidth="sm">
+              <ProfileSection>
+                <ProfileSectionHeader>Xpress Mobile Money</ProfileSectionHeader>
+                <p>Balance: $ {45} USD</p>
+                <Button>Deposit</Button>
+                <Button>Withdraw</Button>
+              </ProfileSection>
+            </Container>
+          </div>
+        </ImageBgContainer>
       ) : null}
     </div>
   );
