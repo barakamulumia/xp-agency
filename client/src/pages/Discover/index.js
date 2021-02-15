@@ -1,22 +1,18 @@
 import { Typography } from "@material-ui/core";
-import React, { Fragment } from "react";
-import { Navbar } from "../../components";
+import React from "react";
+import { Footer, Navbar } from "../../components";
+import { ImageBgContainer } from "../../Resources/Styles/global";
 
 const Discover = ({ withNav }) => {
   return (
-    <div
-      style={{
-        backgroundColor: "#f4f1de",
-        minHeight: "100vh",
-      }}
-    >
-      <Fragment>
-        <Navbar />
-        <br />
+    <div>
+      <Navbar />
+      <ImageBgContainer>
         <Typography variant="h1" component="h1">
           Comming Soon.........
         </Typography>
-      </Fragment>
+      </ImageBgContainer>
+      <Footer />
     </div>
   );
 };

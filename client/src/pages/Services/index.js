@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { Grid } from "@material-ui/core";
 import { ServiceCard, Navbar } from "../../components";
 import { services } from "../../Resources/Data/services";
+import { ImageBgContainer } from "../../Resources/Styles/global";
 
 export default function Services({ withNav }) {
   const ServiceContainer = () => (
@@ -29,16 +30,13 @@ export default function Services({ withNav }) {
   );
 
   return (
-    <div
-      style={{
-        backgroundColor: "#f4f1de",
-        minHeight: "100vh",
-      }}
-    >
+    <div>
       {withNav ? (
         <Fragment>
           <Navbar />
-          <ServiceContainer />
+          <ImageBgContainer>
+            <ServiceContainer />
+          </ImageBgContainer>
         </Fragment>
       ) : (
         <ServiceContainer />
