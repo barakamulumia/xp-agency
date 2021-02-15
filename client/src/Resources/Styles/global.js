@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { Link } from "react-router-dom";
+import bgImage from "../../images/background-lg.svg";
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -10,17 +11,16 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 export const Container = styled.div`
-  z-index: 1;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1500px;
   margin-right: auto;
   margin-left: auto;
-  padding-right: 20px;
-  padding-left: 20px;
+  padding-right: 40px;
+  padding-left: 40px;
 
   @media screen and (max-width: 991px) {
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
   }
 `;
 
@@ -102,5 +102,13 @@ export const LinkButton = styled(Link)`
   @media screen and (max-width: 960px) {
     width: 100%;
   }
+`;
+
+export const ImageBgContainer = styled.div`
+  background-image: url(${bgImage});
+  min-height: 100vh;
+  padding: 40px 30px;
+  background-attachment: fixed;
+  background-size: cover;
 `;
 export default GlobalStyle;
