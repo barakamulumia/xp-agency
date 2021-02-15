@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Button } from "../../Resources/Styles/global";
 
 export const FormPaper = styled(Paper)`
+  background: rgba(250, 248, 248, 0.945) !important;
   margin-top: 64px;
   padding: 8px;
   display: flex;
@@ -35,4 +36,8 @@ export const FormControlWrapper = styled(FormControl)`
 
 export const FormContainer = styled.div`
   width: 100%;
+`;
+
+export const Label = styled.p`
+  color: #01114d;
 `;
