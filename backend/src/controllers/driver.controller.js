@@ -24,6 +24,28 @@ exports.completeRegistration = (req, res, next) => {
   });
 };
 
+exports.verifyRegistered = (req, res, next) => {
+  const { userid: userId } = req.headers;
+  Driver.findOne({ userId }, (err, driver) => {
+    if (err) {
+      res.status(500).json({
+        message: err,
+      });
+      return;
+    }
+    if (!driver) {
+      res.status(404).json({
+        message: "user not found",
+      });
+      return;
+    }
+    res.status(200).json({
+      id: driver._id,
+    });
+    next();
+  });
+};
+
 exports.getDriverById = (req, res, next) => {
   const { driverid: _id } = req.headers;
 
