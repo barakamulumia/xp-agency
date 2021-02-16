@@ -19,6 +19,14 @@ class DriverService {
       address,
     });
   }
+
+  checkVerification(userid) {
+    return axios.get(API_URL + "check-verification", {
+      headers: {
+        userid,
+      },
+    });
+  }
 }
 
 export default new DriverService();
