@@ -1,45 +1,32 @@
 import React, { useState, useEffect } from "react";
-// import { Redirect } from "react-router-dom";
-/**
- * @todo
- * make bg sticky
- */
-import UserService from "../../services/user.service";
-import OrderService from "../../services/order.service";
+import { Redirect } from "react-router-dom";
+import { UserService, OrderService, AuthService } from "../../services";
+import { ClientInfo } from "../../Resources/Data/clientinfo";
+import { Box } from "./client.elements";
+import { Container } from "../../Resources/Styles/global";
+import { Grid } from "@material-ui/core";
 
 import {
   Navbar,
-  OrderCard,
   OrderDetails,
   ClientInfoSection,
   Footer,
+  Orders,
 } from "../../components";
-import { ClientInfo } from "../../Resources/Data/clientinfo";
-
-import {
-  Box,
-  OrderCardContainer,
-  OrdersNav,
-  FilterButton,
-  OrderCardHeader,
-  Notification,
-  Message,
-} from "./client.elements";
-import { Container, LinkButton } from "../../Resources/Styles/global";
-import {
-  MdAccessAlarm,
-  MdWarning,
-  MdImportExport,
-  MdCheck,
-} from "react-icons/md";
-import { Grid } from "@material-ui/core";
-// import { Grid } from "@material-ui/core";
 
 export default function Client() {
+  const [redirect, setRedirect] = useState(null);
+  const [userReady, setUserReady] = useState(null);
+
   const [user, setUser] = useState(undefined);
+
   const [orders, setOrders] = useState([]);
   const [activeId, setActiveId] = useState(undefined);
   const [filter, setFilter] = useState("in-progress");
+
+  const handleFilterChange = (currentFilter) => {
+    setFilter(currentFilter);
+  };
 
   const filterOrders = (orders, filter) =>
     orders.filter((order) => order.status === filter);
@@ -49,6 +36,12 @@ export default function Client() {
   };
 
   useEffect(() => {
+    const currentUser = AuthService.getCurrentUser();
+
+    if (!currentUser) {
+      setRedirect("/home");
+    }
+
     UserService.getClientBoard()
       .then((response) => {
         if (response.status === 200) {
@@ -62,6 +55,7 @@ export default function Client() {
               setOrders(response.data.orders);
             }
           });
+          setUserReady(true);
         } else {
           setUser(undefined);
           setOrders(undefined);
@@ -74,92 +68,47 @@ export default function Client() {
       });
   }, []);
 
-  // if (typeof user !== "object") {
-  //   return <Redirect to="/" />;
-  // }
+  if (redirect) {
+    return <Redirect to={redirect} />;
+  }
 
   return (
     <div>
-      <Box container justify="space-between">
-        <Container>
-          <Navbar />
-          <ClientInfoSection {...ClientInfo} />
-        </Container>
-        <Container>
-          <Grid container justify="space-between">
-            <Grid item>
-              <OrderCardContainer>
-                <OrderCardHeader>My Trips</OrderCardHeader>
-                <OrdersNav>
-                  <FilterButton
-                    variant="contained"
-                    onClick={() => setFilter("pending")}
-                    startIcon={<MdAccessAlarm />}
-                  >
-                    Pending
-                  </FilterButton>
-                  <FilterButton
-                    onClick={() => setFilter("cancelled")}
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<MdWarning />}
-                  >
-                    Cancelled
-                  </FilterButton>
-                  <FilterButton
-                    onClick={() => setFilter("in-progress")}
-                    variant="contained"
-                    startIcon={<MdImportExport />}
-                  >
-                    InProgress
-                  </FilterButton>
-                  <FilterButton
-                    onClick={() => setFilter("successfull")}
-                    variant="contained"
-                    color="primary"
-                    startIcon={<MdCheck />}
-                  >
-                    Successfull
-                  </FilterButton>
-                </OrdersNav>
-                {orders.length ? (
-                  filterOrders(orders, filter).length ? (
-                    filterOrders(orders, filter).map((order) => (
-                      <OrderCard
-                        order={order}
-                        key={order._id}
-                        SET_ACTIVE_INDEX={setActiveIndex}
-                      />
-                    ))
-                  ) : (
-                    <Notification>
-                      <Message>No orders in this category</Message>
-                      <br />
-                      <LinkButton primary="true" to="/client/order-truck">
-                        Place Your Order
-                      </LinkButton>
-                    </Notification>
-                  )
-                ) : (
-                  ""
-                )}
-              </OrderCardContainer>
-            </Grid>
-            <Grid item>
-              {orders.length && filterOrders(orders, filter).length && (
-                <OrderDetails
-                  order={
-                    filterOrders(orders, filter).find(
-                      (order) => order._id === activeId
-                    ) || orders[0]
-                  }
-                />
-              )}
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
-      <Footer />
+      {userReady ? (
+        <div>
+          <Box container justify="space-between">
+            <Container>
+              <Navbar />
+              <ClientInfoSection {...ClientInfo} />
+            </Container>
+            <Container>
+              <Grid container justify="space-between">
+                <Grid item>
+                  <Orders
+                    orders={filterOrders(orders, filter)}
+                    setActiveIndex={setActiveIndex}
+                    filter={filter}
+                    handleFilterChange={handleFilterChange}
+                  />
+                </Grid>
+                <Grid item>
+                  {orders.length && filterOrders(orders, filter).length && (
+                    <OrderDetails
+                      order={
+                        filterOrders(orders, filter).find(
+                          (order) => order._id === activeId
+                        ) || orders[0]
+                      }
+                      user={user}
+                    />
+                  )}
+                </Grid>
+              </Grid>
+            </Container>
+          </Box>
+          <Footer />
+        </div>
+      ) : null}
     </div>
   );
 }
