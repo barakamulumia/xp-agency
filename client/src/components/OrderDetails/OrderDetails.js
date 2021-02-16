@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import DriverService from "../../services/driver.service";
+import { DriverService, ClientService } from "../../services";
+import { Button } from "../../Resources/Styles/global";
 
 import {
   OrderDetailsContainer,
@@ -9,18 +10,34 @@ import {
   OrderValue,
 } from "./OrderDetails.elements";
 
-const OrderDetails = ({ order }) => {
+const OrderDetails = ({ order, user }) => {
   const [driver, setDriver] = useState(null);
+  const [client, setClient] = useState(null);
+
+  // const handleOrderCancel = (orderId) => {
+  //   OrderService.cancelOrder(orderId);
+  // };
+  // const handleOrderAccept = (orderId) => {
+  //   OrderService.acceptOrder(orderId);
+  // };
 
   useEffect(() => {
     DriverService.getDriverById(order.driverId)
       .then((res) => {
         setDriver(res.data);
       })
-      .catch((err) => {
+      .catch((_err) => {
         setDriver(null);
       });
-  }, [order.driverId]);
+
+    ClientService.getClientById(order.clientId)
+      .then((res) => {
+        setClient(res.data);
+      })
+      .catch((_err) => {
+        setClient(null);
+      });
+  }, [order.driverId, order.clientId]);
 
   return (
     <OrderDetailsContainer>
@@ -41,14 +58,25 @@ const OrderDetails = ({ order }) => {
         <OrderItem>Charges: </OrderItem>
         <OrderValue>{order.charges}</OrderValue>
       </OrderColumn>
-      {driver && (
-        <OrderColumn>
-          <OrderItem>Driver</OrderItem>
-          <OrderValue>
-            {driver.firstname} - {driver.truckno}
-          </OrderValue>
-        </OrderColumn>
-      )}
+      {user.role === "client"
+        ? driver && (
+            <OrderColumn>
+              <OrderItem>Driver</OrderItem>
+              <OrderValue>
+                {driver.firstname} - {driver.truckno}
+              </OrderValue>
+            </OrderColumn>
+          )
+        : user.role === "driver"
+        ? client && (
+            <OrderColumn>
+              <OrderItem>Client</OrderItem>
+              <OrderValue>
+                {client.firstname}&nbsp;{client.lastname}
+              </OrderValue>
+            </OrderColumn>
+          )
+        : null}
       <OrderColumn>
         <OrderItem>Date: </OrderItem>
         <OrderValue>{new Date(order.dateTime).toLocaleString()}</OrderValue>
@@ -57,6 +85,12 @@ const OrderDetails = ({ order }) => {
         <OrderItem>Status: </OrderItem>
         <OrderValue>{order.status}</OrderValue>
       </OrderColumn>
+      {order.status === "pending" && (
+        <OrderColumn>
+          {user.role === "driver" && <Button primary>Accept</Button>}
+          <Button>Cancel</Button>
+        </OrderColumn>
+      )}
     </OrderDetailsContainer>
   );
 };
