@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { Link } from "react-router-dom";
-import bgImage from "../../images/background-lg.svg";
+import bgImage from "../images/background-lg.svg";
 
 const GlobalStyle = createGlobalStyle`
 * {

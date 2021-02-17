@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { Navbar } from "../../components";
-import AuthService from "../../services/auth.service";
-import { Button, ImageBgContainer } from "../../Resources/Styles/global";
+import { AuthAPI } from "../../api";
+import { Button, ImageBgContainer } from "../../resources/Styles/global";
 import { Container, Grid } from "@material-ui/core";
 
 import {
@@ -21,7 +21,7 @@ export default function Profile() {
   const [currentUser, setCurrentUser] = useState({ username: "" });
 
   useEffect(() => {
-    const currentUser = AuthService.getCurrentUser();
+    const currentUser = AuthAPI.getCurrentUser();
 
     if (!currentUser) {
       setRedirect("/home");

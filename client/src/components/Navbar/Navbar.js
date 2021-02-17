@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 
 import { FaTimes, FaBars } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
-import { DecisionDialog } from "../";
-import AuthService from "../../services/auth.service";
+import { DecisionDialog } from "../index";
+import { AuthAPI } from "../../api";
 import UserNav from "./UserNav";
 
 import {
@@ -46,13 +46,13 @@ const Navbar = () => {
   };
 
   const logOutCallBack = () => {
-    AuthService.logout();
+    AuthAPI.logout();
     setUserBoard(false);
     history.push("/");
   };
 
   useEffect(() => {
-    const user = AuthService.getCurrentUser();
+    const user = AuthAPI.getCurrentUser();
 
     if (user) {
       setCurrentUser(user);

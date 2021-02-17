@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8080/api/drivers/";
 
-class DriverService {
+class DriverAPI {
   getDriverById(driverid) {
     return axios.get(API_URL + "findone", {
       headers: {
@@ -29,4 +29,4 @@ class DriverService {
   }
 }
 
-export default new DriverService();
+export default new DriverAPI();

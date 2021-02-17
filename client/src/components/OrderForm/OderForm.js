@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import OrderService from "../../services/order.service";
+import { OrderAPI } from "../../api";
 import { useHistory } from "react-router-dom";
 
 import {
@@ -78,7 +78,7 @@ const OderForm = () => {
       charges: 4000,
     };
 
-    OrderService.makeOrder(orderObj).then(
+    OrderAPI.makeOrder(orderObj).then(
       (res) => {
         history.push("/client");
         console.log(res);

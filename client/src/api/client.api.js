@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8080/api/clients/";
 
-class ClientService {
+class ClientAPI {
   getClientById(clientid) {
     return axios.get(API_URL + "findone", {
       headers: {
@@ -12,4 +12,4 @@ class ClientService {
   }
 }
 
-export default new ClientService();
+export default new ClientAPI();

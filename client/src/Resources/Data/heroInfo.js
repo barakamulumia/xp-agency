@@ -1,4 +1,4 @@
-import townImage from "../../images/town.svg";
+import townImage from "../images/town.svg";
 
 export const HeroInfo = {
   topline: {

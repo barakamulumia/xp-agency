@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8080/api/orders/";
 
-class OrderService {
+class OrderAPI {
   getAllOrders(userid, role) {
     return axios.get(API_URL + "user", {
       headers: {
@@ -55,4 +55,4 @@ class OrderService {
   }
 }
 
-export default new OrderService();
+export default new OrderAPI();

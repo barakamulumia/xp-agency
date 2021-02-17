@@ -1,8 +1,9 @@
 import React, { useState, useEffect, Fragment } from "react";
-import UserService from "../../services/user.service";
+import { UserAPI } from "../../api";
+
 import { Footer, Navbar, OrderForm, TruckCard } from "../../components";
 import { Box } from "./client.elements";
-import { Container } from "../../Resources/Styles/global";
+import { Container } from "../../resources/Styles/global";
 
 import { Grid } from "@material-ui/core";
 
@@ -10,7 +11,7 @@ export default function Client() {
   const [user, setUser] = useState(undefined);
 
   useEffect(() => {
-    UserService.getClientBoard().then(
+    UserAPI.getClientBoard().then(
       (response) => {
         setUser(response.data);
       },

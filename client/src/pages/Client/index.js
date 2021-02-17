@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import { UserService, OrderService, AuthService } from "../../services";
-import { ClientInfo } from "../../Resources/Data/clientinfo";
+import { UserAPI, OrderAPI, AuthAPI } from "../../api";
+import { ClientInfo } from "../../resources/Data/clientinfo";
 import { Box } from "./client.elements";
-import { Container } from "../../Resources/Styles/global";
+import { Container } from "../../resources/Styles/global";
 import { Grid } from "@material-ui/core";
 
 import {
@@ -36,13 +36,13 @@ export default function Client() {
   };
 
   useEffect(() => {
-    const currentUser = AuthService.getCurrentUser();
+    const currentUser = AuthAPI.getCurrentUser();
 
     if (!currentUser) {
       setRedirect("/home");
     }
 
-    UserService.getClientBoard()
+    UserAPI.getClientBoard()
       .then((response) => {
         if (response.status === 200) {
           const { userId, role } = response.data;
@@ -50,7 +50,7 @@ export default function Client() {
             userId,
             role,
           });
-          OrderService.getAllOrders(userId, role).then((response) => {
+          OrderAPI.getAllOrders(userId, role).then((response) => {
             if (response.status === 200) {
               setOrders(response.data.orders);
             }

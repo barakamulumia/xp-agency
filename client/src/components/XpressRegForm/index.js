@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DriverService from "../../services/driver.service";
+import { DriverAPI } from "../../api";
 
 import {
   MdDirectionsCar,
@@ -37,7 +37,7 @@ export default function XpressRegister({ USER_ID }) {
   const onSubmit = (user) => {
     const { truckno, dlno, address } = user;
     setLoading(true);
-    DriverService.completeRegistration(USER_ID, truckno, dlno, address).then(
+    DriverAPI.completeRegistration(USER_ID, truckno, dlno, address).then(
       (response) => {
         setMessage(response.data.message);
         setLoading(false);

@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
-import GlobalStyle from "./Resources/Styles/global";
+import GlobalStyle from "./resources/Styles/global";
 
 import {
   Home,

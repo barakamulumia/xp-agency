@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import UserService from "../../services/user.service";
+import { UserAPI } from "../../api";
 import { Navbar } from "../../components";
 
 export default function Client() {
   const [content, setContent] = useState(undefined);
 
   useEffect(() => {
-    UserService.getAdminBoard().then(
+    UserAPI.getAdminBoard().then(
       (response) => {
         setContent(response.data.content);
       },

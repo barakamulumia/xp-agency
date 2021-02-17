@@ -1,5 +1,3 @@
-require("dotenv");
-
 const express = require("express"),
   bodyParser = require("body-parser"),
   cors = require("cors");
@@ -55,7 +53,7 @@ require("./routes/driver.routes")(app);
 
 app.get("/", (_req, res) => res.send("Hello World!"));
 
-const port = process.env.PORT || 8080;
+const port = 8080;
 
 app.listen(port, () => console.log(` ${port}! is Live`));
 

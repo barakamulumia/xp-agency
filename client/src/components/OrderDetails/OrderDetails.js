@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { DriverService, ClientService, OrderService } from "../../services";
-import { Button } from "../../Resources/Styles/global";
+import { DriverAPI, ClientAPI, OrderAPI } from "../../api";
+import { Button } from "../../resources/Styles/global";
 
 import {
   OrderDetailsContainer,
@@ -17,7 +17,7 @@ const OrderDetails = ({ order, user }) => {
   const [message, setMessage] = useState("");
 
   const handleOrderCancel = () => {
-    OrderService.cancelOrder(_id)
+    OrderAPI.cancelOrder(_id)
       .then((response) => {
         if (response.status === 200) {
           setMessage(response.data);
@@ -31,7 +31,7 @@ const OrderDetails = ({ order, user }) => {
   };
 
   const handleOrderAccept = () => {
-    OrderService.acceptOrder(_id)
+    OrderAPI.acceptOrder(_id)
       .then((response) => {
         if (response.status === 200) {
           setMessage(response.data);
@@ -44,7 +44,7 @@ const OrderDetails = ({ order, user }) => {
   };
 
   const handleOrderComplete = () => {
-    OrderService.completeOrder(_id)
+    OrderAPI.completeOrder(_id)
       .then((response) => {
         if (response.status === 200) {
           setMessage(response.data);
@@ -57,7 +57,7 @@ const OrderDetails = ({ order, user }) => {
   };
 
   useEffect(() => {
-    DriverService.getDriverById(order.driverId)
+    DriverAPI.getDriverById(order.driverId)
       .then((res) => {
         setDriver(res.data);
       })
@@ -65,7 +65,7 @@ const OrderDetails = ({ order, user }) => {
         setDriver(null);
       });
 
-    ClientService.getClientById(order.clientId)
+    ClientAPI.getClientById(order.clientId)
       .then((res) => {
         setClient(res.data);
       })

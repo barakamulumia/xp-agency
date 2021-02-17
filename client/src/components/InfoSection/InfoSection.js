@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import { Container } from "../../Resources/Styles/global";
-import { DecisionDialog } from "../";
+import { Container } from "../../resources/Styles/global";
+import { DecisionDialog } from "../index";
 
 import {
   InfoSec,

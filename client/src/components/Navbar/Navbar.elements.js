@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Container } from "../../Resources/Styles/global";
+import { Container } from "../../resources/Styles/global";
 import { Link } from "react-router-dom";
 import { FaMeteor } from "react-icons/fa";
 

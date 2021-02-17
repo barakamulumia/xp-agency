@@ -1,7 +1,3 @@
-/**
- * TODO
- */
-
 import React from "react";
 import { Image } from "../index";
 import { CardContainer, Timeline } from "./TruckCard.elements";

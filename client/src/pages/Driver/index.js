@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 
-import destination from "../../images/Destination.svg";
+import destination from "../../resources/images/Destination.svg";
 import {
   Navbar,
   XpressRegForm,
@@ -11,14 +11,9 @@ import {
   Footer,
 } from "../../components";
 
-import {
-  UserService,
-  AuthService,
-  DriverService,
-  OrderService,
-} from "../../services";
+import { DriverAPI, UserAPI, AuthAPI, OrderAPI } from "../../api";
 
-import { Container } from "../../Resources/Styles/global";
+import { Container } from "../../resources/Styles/global";
 import { Box } from "./driver.elements";
 import { Grid } from "@material-ui/core";
 
@@ -43,13 +38,13 @@ export default function Driver() {
     setActiveId(id);
   };
   useEffect(() => {
-    const currentUser = AuthService.getCurrentUser();
+    const currentUser = AuthAPI.getCurrentUser();
 
     if (!currentUser) {
       setRedirect("/home");
     }
 
-    UserService.getDriverBoard()
+    UserAPI.getDriverBoard()
       .then((response) => {
         if (response.status === 200) {
           const { userId, role } = response.data;
@@ -58,11 +53,11 @@ export default function Driver() {
             role,
           });
           setUserReady(true);
-          DriverService.checkVerification(userId).then((response) => {
+          DriverAPI.checkVerification(userId).then((response) => {
             if (response.status === 200) {
               const { id } = response.data;
               setIsVerified(true);
-              OrderService.getAllOrders(id, role).then((response) => {
+              OrderAPI.getAllOrders(id, role).then((response) => {
                 if (response.status === 200) {
                   setOrders(response.data.orders);
                 }
@@ -108,7 +103,7 @@ export default function Driver() {
                         order={
                           filterOrders(orders, filter).find(
                             (order) => order._id === activeId
-                          ) || orders[0]
+                          ) || filterOrders(orders, filter)[0]
                         }
                         user={user}
                       />

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import AuthService from "../../services/auth.service";
+import { AuthAPI } from "../../api";
 
 import {
   MdLockOutline,
@@ -30,7 +30,7 @@ import {
 } from "./Account.elements";
 
 import ValidationError from "../Error/Validation";
-import ValidationPatterns from "../../Resources/Patterns/validation";
+import ValidationPatterns from "../../resources/Patterns/validation";
 
 export default function SignUp({ route }) {
   const { register, handleSubmit, errors } = useForm({
@@ -58,7 +58,7 @@ export default function SignUp({ route }) {
     const { email, password } = user;
     setLoading(true);
 
-    AuthService.login(email, password, role).then(
+    AuthAPI.login(email, password, role).then(
       () => {
         history.push(`/${route}`);
         setLoading(false);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
-import { LinkButton } from "../../Resources/Styles/global";
+import { LinkButton } from "../../resources/Styles/global";
 import OrderCard from "../OrderCard/OrderCard";
 
 import {
