@@ -97,7 +97,7 @@ export default function Client() {
                       order={
                         filterOrders(orders, filter).find(
                           (order) => order._id === activeId
-                        ) || orders[0]
+                        ) || filterOrders(orders, filter)[0]
                       }
                       user={user}
                     />
