@@ -33,11 +33,26 @@ class OrderService {
     });
   }
 
-  getCompletedOrders(userId) {}
+  acceptOrder(orderId) {
+    return axios.post(API_URL + "statuschange", {
+      orderId,
+      status: "in-progress",
+    });
+  }
 
-  getPendingOrders(userId) {}
+  completeOrder(orderId) {
+    return axios.post(API_URL + "statuschange", {
+      orderId,
+      status: "successfull",
+    });
+  }
 
-  getCancelledOrders(userId) {}
+  cancelOrder(orderId) {
+    return axios.post(API_URL + "statuschange", {
+      orderId,
+      status: "cancelled",
+    });
+  }
 }
 
 export default new OrderService();

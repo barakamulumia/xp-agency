@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { DriverService, ClientService } from "../../services";
+import { DriverService, ClientService, OrderService } from "../../services";
 import { Button } from "../../Resources/Styles/global";
 
 import {
@@ -11,15 +11,50 @@ import {
 } from "./OrderDetails.elements";
 
 const OrderDetails = ({ order, user }) => {
+  const { _id } = order;
   const [driver, setDriver] = useState(null);
   const [client, setClient] = useState(null);
+  const [message, setMessage] = useState("");
 
-  // const handleOrderCancel = (orderId) => {
-  //   OrderService.cancelOrder(orderId);
-  // };
-  // const handleOrderAccept = (orderId) => {
-  //   OrderService.acceptOrder(orderId);
-  // };
+  const handleOrderCancel = () => {
+    OrderService.cancelOrder(_id)
+      .then((response) => {
+        if (response.status === 200) {
+          setMessage(response.data);
+          console.log(message);
+        }
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleOrderAccept = () => {
+    OrderService.acceptOrder(_id)
+      .then((response) => {
+        if (response.status === 200) {
+          setMessage(response.data);
+        }
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleOrderComplete = () => {
+    OrderService.completeOrder(_id)
+      .then((response) => {
+        if (response.status === 200) {
+          setMessage(response.data);
+        }
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     DriverService.getDriverById(order.driverId)
@@ -85,10 +120,24 @@ const OrderDetails = ({ order, user }) => {
         <OrderItem>Status: </OrderItem>
         <OrderValue>{order.status}</OrderValue>
       </OrderColumn>
-      {order.status === "pending" && (
+      {order.status === "pending" &&
+        (user.role === "driver" ? (
+          <OrderColumn>
+            <Button primary onClick={handleOrderAccept}>
+              Accept
+            </Button>
+            <Button primary>Decline</Button>
+          </OrderColumn>
+        ) : (
+          user.role === "client" && (
+            <OrderColumn>
+              <Button onClick={handleOrderCancel}>Cancel</Button>
+            </OrderColumn>
+          )
+        ))}
+      {order.status === "in-progress" && (
         <OrderColumn>
-          {user.role === "driver" && <Button primary>Accept</Button>}
-          <Button>Cancel</Button>
+          <Button onClick={handleOrderComplete}>Complete Trip</Button>
         </OrderColumn>
       )}
     </OrderDetailsContainer>
