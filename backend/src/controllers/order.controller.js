@@ -21,7 +21,6 @@ exports.creteOrder = (req, res, next) => {
     load,
     charges,
     date: new Date(),
-    status: "pending",
   });
 
   newOrder.save((err, order) => {
@@ -32,7 +31,7 @@ exports.creteOrder = (req, res, next) => {
       return;
     }
 
-    res.json({
+    res.status(200).json({
       message: "Order Created",
     });
     next();
@@ -68,7 +67,6 @@ exports.getAllOrdersByUserId = (req, res, next) => {
           });
           return;
         }
-
         res.status(200).json({
           orders,
         });
@@ -81,4 +79,37 @@ exports.getAllOrdersByUserId = (req, res, next) => {
     });
     return;
   }
+};
+
+exports.changeOrderStatus = (req, res, next) => {
+  const { orderId: _id, status } = req.body;
+
+  Order.findOne(
+    {
+      _id,
+    },
+    (err, order) => {
+      if (err) {
+        res.status(500).json({
+          message: err,
+        });
+        return;
+      }
+
+      if (!order) {
+        res.status(404).json({
+          message: "order not found",
+        });
+        return;
+      }
+
+      order.status = status;
+      order.save();
+
+      res.status(200).json({
+        message: `Order status changed to ${status}`,
+      });
+      next();
+    }
+  );
 };
