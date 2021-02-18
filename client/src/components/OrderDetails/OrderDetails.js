@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { DriverAPI, ClientAPI, OrderAPI } from "../../api";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  updateOrder,
+  ordersFilterChanged,
+  selectActiveOrder,
+} from "../../state/orders.slice";
+
+import { DriverAPI, ClientAPI } from "../../api";
 import { Button } from "../../resources/Styles/global";
 
 import {
@@ -10,50 +17,31 @@ import {
   OrderValue,
 } from "./OrderDetails.elements";
 
-const OrderDetails = ({ order, user }) => {
-  const { _id } = order;
+const OrderDetails = ({ user }) => {
+  const order = useSelector(selectActiveOrder);
+
+  const { _id: orderId } = order;
   const [driver, setDriver] = useState(null);
   const [client, setClient] = useState(null);
-  const [message, setMessage] = useState("");
+  const dispatch = useDispatch();
+
+  const OrderUpdate = (status) => {
+    dispatch(updateOrder({ orderId, status }));
+  };
 
   const handleOrderCancel = () => {
-    OrderAPI.cancelOrder(_id)
-      .then((response) => {
-        if (response.status === 200) {
-          setMessage(response.data);
-          console.log(message);
-        }
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    OrderUpdate("cancelled");
+    dispatch(ordersFilterChanged("cancelled"));
   };
 
   const handleOrderAccept = () => {
-    OrderAPI.acceptOrder(_id)
-      .then((response) => {
-        if (response.status === 200) {
-          setMessage(response.data);
-        }
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    OrderUpdate("in-progress");
+    dispatch(ordersFilterChanged("in-progress"));
   };
 
   const handleOrderComplete = () => {
-    OrderAPI.completeOrder(_id)
-      .then((response) => {
-        if (response.status === 200) {
-          setMessage(response.data);
-        }
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    OrderUpdate("successfull");
+    dispatch(ordersFilterChanged("successfull"));
   };
 
   useEffect(() => {
@@ -74,12 +62,15 @@ const OrderDetails = ({ order, user }) => {
       });
   }, [order.driverId, order.clientId]);
 
+  if (!order) {
+    return null;
+  }
   return (
     <OrderDetailsContainer>
       <OrderDetailsHeader>Xpress Kenya</OrderDetailsHeader>
       <OrderColumn>
         <OrderItem>Order No:</OrderItem>
-        <OrderValue>{order._id.slice(0, 8)}</OrderValue>
+        <OrderValue>{orderId.slice(0, 8)}</OrderValue>
       </OrderColumn>
       <OrderColumn>
         <OrderItem>Pick Up: </OrderItem>

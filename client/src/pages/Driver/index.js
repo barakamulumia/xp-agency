@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
+import { Grid } from "@material-ui/core";
+
+import { DriverAPI, UserAPI, AuthAPI } from "../../api";
+import { useSelector, useDispatch } from "react-redux";
+import { selectOrders, activeOrderChanged } from "../../state/orders.slice";
 
 import destination from "../../resources/images/Destination.svg";
+import { Container } from "../../resources/Styles/global";
+import { Box } from "./driver.elements";
+
 import {
   Navbar,
   XpressRegForm,
@@ -11,32 +19,18 @@ import {
   Footer,
 } from "../../components";
 
-import { DriverAPI, UserAPI, AuthAPI, OrderAPI } from "../../api";
-
-import { Container } from "../../resources/Styles/global";
-import { Box } from "./driver.elements";
-import { Grid } from "@material-ui/core";
-
 export default function Driver() {
+  const dispatch = useDispatch();
+  const orders = useSelector(selectOrders);
   const [redirect, setRedirect] = useState(null);
   const [userReady, setUserReady] = useState(null);
   const [user, setUser] = useState(undefined);
   const [isVerified, setIsVerified] = useState(false);
 
-  const [orders, setOrders] = useState([]);
-  const [activeId, setActiveId] = useState(undefined);
-  const [filter, setFilter] = useState("in-progress");
-
-  const handleFilterChange = (currentFilter) => {
-    setFilter(currentFilter);
-  };
-
-  const filterOrders = (orders, filter) =>
-    orders.filter((order) => order.status === filter);
-
   const setActiveIndex = (id) => {
-    setActiveId(id);
+    dispatch(activeOrderChanged(id));
   };
+
   useEffect(() => {
     const currentUser = AuthAPI.getCurrentUser();
 
@@ -55,24 +49,16 @@ export default function Driver() {
           setUserReady(true);
           DriverAPI.checkVerification(userId).then((response) => {
             if (response.status === 200) {
-              const { id } = response.data;
               setIsVerified(true);
-              OrderAPI.getAllOrders(id, role).then((response) => {
-                if (response.status === 200) {
-                  setOrders(response.data.orders);
-                }
-              });
             }
           });
         } else {
           setUser(undefined);
-          setOrders(undefined);
         }
       })
       .catch((error) => {
         console.log(error);
         setUser(undefined);
-        setOrders(undefined);
       });
   }, []);
 
@@ -90,24 +76,10 @@ export default function Driver() {
               {isVerified ? (
                 <Grid container justify="space-between">
                   <Grid item>
-                    <Orders
-                      orders={filterOrders(orders, filter)}
-                      setActiveIndex={setActiveIndex}
-                      filter={filter}
-                      handleFilterChange={handleFilterChange}
-                    />
+                    <Orders setActiveIndex={setActiveIndex} user={user} />
                   </Grid>
                   <Grid item>
-                    {orders.length && filterOrders(orders, filter).length && (
-                      <OrderDetails
-                        order={
-                          filterOrders(orders, filter).find(
-                            (order) => order._id === activeId
-                          ) || filterOrders(orders, filter)[0]
-                        }
-                        user={user}
-                      />
-                    )}
+                    {orders.length && <OrderDetails user={user} />}
                   </Grid>
                 </Grid>
               ) : (

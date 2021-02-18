@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { OrderAPI } from "../../api";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { addNewOrder, ordersFilterChanged } from "../../state/orders.slice";
+import { selectDestination, selectPickUp } from "../../state/maps.slice";
 
 import {
   Select,
@@ -22,23 +25,18 @@ import {
   FormContainer,
   Label,
 } from "./OrderForm.elements";
+
 import { FaHelicopter } from "react-icons/fa";
 import MapSearchInput from "../Map/mapinput";
 
 const OderForm = () => {
+  const dispatch = useDispatch();
+
   const [moveType, setMoveType] = useState("fr");
   const [numOfBedRooms, setNumOfBedrooms] = useState("");
   const [approxFeet, setApproxFeet] = useState("");
-  const [destination, setDestination] = useState({
-    address: "",
-    latlng: "",
-    placeId: "",
-  });
-  const [pickup, setPickUp] = useState({
-    address: "",
-    latlng: "",
-    placeId: "",
-  });
+  const [addRequestStatus, setAddRequestStatus] = useState("idle");
+
   const history = useHistory();
 
   const handleMoveTypeChange = (event) => {
@@ -53,41 +51,44 @@ const OderForm = () => {
     setApproxFeet(event.target.value);
   };
 
-  const handleDestinationChange = (v) => {
-    setDestination(v);
-  };
-  const handlePickUpChange = (v) => {
-    setPickUp(v);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const orderObj = {
-      moveType,
-      clientId: "601667e4d14c2715888e4623",
-      driverId: "601fc95aa69bba33f4e2ad58",
-      load:
-        moveType === "hm"
-          ? `${numOfBedRooms} Bed rooms`
-          : moveType === "om"
-          ? `${approxFeet} Ft`
-          : "Designated",
-      pickup,
-      destination,
-      charges: 4000,
-    };
-
-    OrderAPI.makeOrder(orderObj).then(
-      (res) => {
-        history.push("/client");
-        console.log(res);
-      },
-      (err) => console.log(err)
-    );
-  };
   const isHouseMoving = () => moveType === "hm";
   const isOfficeMoving = () => moveType === "om";
+
+  const pickup = useSelector(selectPickUp);
+  const destination = useSelector(selectDestination);
+  const canSave =
+    [pickup, destination, moveType].every(Boolean) &&
+    addRequestStatus === "idle";
+
+  const handleSubmit = async () => {
+    if (canSave) {
+      try {
+        setAddRequestStatus("pending");
+        const orderObj = {
+          moveType,
+          clientId: "601667e4d14c2715888e4623",
+          driverId: "601fc95aa69bba33f4e2ad58",
+          load:
+            moveType === "hm"
+              ? `${numOfBedRooms} Bed rooms`
+              : moveType === "om"
+              ? `${approxFeet} Ft`
+              : "Designated",
+          pickup,
+          destination,
+          charges: 4000,
+        };
+        const resultAction = await dispatch(addNewOrder(orderObj));
+        unwrapResult(resultAction);
+        dispatch(ordersFilterChanged("pending"));
+        history.push("/client");
+      } catch (err) {
+        console.error("Failed to save the order: ", err);
+      } finally {
+        setAddRequestStatus("idle");
+      }
+    }
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -99,7 +100,7 @@ const OderForm = () => {
         <Typography component="h1" variant="h5">
           Xpress Shipping
         </Typography>
-        <Form onSubmit={handleSubmit}>
+        <Form>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <FormControlWrapper variant="outlined">
@@ -163,17 +164,22 @@ const OderForm = () => {
             <Grid item xs={12}>
               <FormContainer>
                 <Label>Pick Up Location</Label>
-                <MapSearchInput SET_LOCATION={handlePickUpChange} />
+                <MapSearchInput inputType="pickup" />
               </FormContainer>
             </Grid>
             <Grid item xs={12}>
               <FormContainer>
                 <Label>Destination Of Your Goods</Label>
-                <MapSearchInput SET_LOCATION={handleDestinationChange} />
+                <MapSearchInput inputType="destination" />
               </FormContainer>
             </Grid>
           </Grid>
-          <SubmitButton type="submit" secondary>
+          <SubmitButton
+            type="button"
+            onClick={handleSubmit}
+            primary={canSave}
+            disabled={!canSave}
+          >
             Order Truck
           </SubmitButton>
         </Form>
