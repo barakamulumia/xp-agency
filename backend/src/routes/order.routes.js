@@ -5,5 +5,5 @@ module.exports = function (app) {
 
   app.post("/api/orders/create", controller.creteOrder);
 
-  app.post("/api/orders/statuschange", controller.changeOrderStatus);
+  app.post("/api/orders/update", controller.updateOrder);
 };
