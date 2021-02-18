@@ -12,7 +12,7 @@ class OrderAPI {
     });
   }
 
-  makeOrder(orderDetails) {
+  addNewOrder(orderDetails) {
     const {
       moveType,
       clientId,
@@ -22,6 +22,7 @@ class OrderAPI {
       load,
       charges,
     } = orderDetails;
+
     return axios.post(API_URL + "create", {
       moveType,
       clientId,
@@ -33,24 +34,11 @@ class OrderAPI {
     });
   }
 
-  acceptOrder(orderId) {
-    return axios.post(API_URL + "statuschange", {
+  updateOrder(order) {
+    const { orderId, status } = order;
+    return axios.post(API_URL + "update", {
       orderId,
-      status: "in-progress",
-    });
-  }
-
-  completeOrder(orderId) {
-    return axios.post(API_URL + "statuschange", {
-      orderId,
-      status: "successfull",
-    });
-  }
-
-  cancelOrder(orderId) {
-    return axios.post(API_URL + "statuschange", {
-      orderId,
-      status: "cancelled",
+      status,
     });
   }
 }
