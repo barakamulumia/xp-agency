@@ -59,6 +59,10 @@ export const Button = styled.button`
     opacity: 0.9;
   }
 
+&:disabled {
+  opacity: 0.4
+}
+
   @media screen and (max-width: 960px) {
     width: 100%;
   }
