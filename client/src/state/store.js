@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./user.slice";
+import ordersReducer from "./orders.slice";
+import mapsReducer from "./maps.slice";
 
 export default configureStore({
   reducer: {
-    user: userReducer,
+    orders: ordersReducer,
+    maps: mapsReducer,
   },
 });
