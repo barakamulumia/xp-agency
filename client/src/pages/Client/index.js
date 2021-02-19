@@ -5,8 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { UserAPI, AuthAPI } from "../../api";
 import { activeOrderChanged, selectOrders } from "../../state/orders.slice";
-import { Container } from "../../resources/Styles/global";
-import { ClientInfo } from "../../resources/Data/clientinfo";
+import { Container } from "../../resources/styles/global";
+import { ClientInfo } from "../../resources/data/clientinfo";
 import { Box } from "./client.elements";
 
 import {

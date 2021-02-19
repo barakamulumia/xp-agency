@@ -7,7 +7,7 @@ import {
   ordersFilterChanged,
 } from "../../state/orders.slice";
 
-import { LinkButton } from "../../resources/Styles/global";
+import { LinkButton } from "../../resources/styles/global";
 import OrderCard from "../OrderCard/OrderCard";
 
 import {

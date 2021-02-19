@@ -1,7 +1,7 @@
 import { Typography } from "@material-ui/core";
 import React from "react";
 import { Footer, Navbar } from "../../components";
-import { ImageBgContainer } from "../../resources/Styles/global";
+import { ImageBgContainer } from "../../resources/styles/global";
 
 const Discover = ({ withNav }) => {
   return (

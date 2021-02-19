@@ -9,6 +9,7 @@ import PlacesAutocomplete, {
 import { locationUpdated } from "../../state/maps.slice";
 
 import { LocationSearchInput } from "./mapinput.elements";
+
 export default function MapSearchInput({ inputType }) {
   const dispatch = useDispatch();
 

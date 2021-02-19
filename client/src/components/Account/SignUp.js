@@ -31,7 +31,7 @@ import {
 } from "./Account.elements";
 
 import ValidationError from "../Error/Validation";
-import ValidationPatterns from "../../resources/Patterns/validation";
+import ValidationPatterns from "../../resources/patterns/validation";
 
 export default function SignUp({ route }) {
   const { register, handleSubmit, errors } = useForm({

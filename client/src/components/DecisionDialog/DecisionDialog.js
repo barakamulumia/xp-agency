@@ -10,7 +10,7 @@ import {
   DialogTextContent,
 } from "./DecisionDialog.element";
 
-import { LinkButton, Button } from "../../resources/Styles/global";
+import { LinkButton, Button } from "../../resources/styles/global";
 
 import React, { forwardRef, useState } from "react";
 

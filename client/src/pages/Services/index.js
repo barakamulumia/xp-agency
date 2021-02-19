@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import { Grid } from "@material-ui/core";
 import { ServiceCard, Navbar } from "../../components";
-import { services } from "../../resources/Data/services";
-import { ImageBgContainer } from "../../resources/Styles/global";
+import { services } from "../../resources/data/services";
+import { ImageBgContainer } from "../../resources/styles/global";
 
 export default function Services({ withNav }) {
   const ServiceContainer = () => (

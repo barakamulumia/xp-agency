@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Container, LinkButton } from "../../resources/Styles/global";
+import { Container, LinkButton } from "../../resources/styles/global";
 
 import {
   InfoSec,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { Navbar } from "../../components";
 import { AuthAPI } from "../../api";
-import { Button, ImageBgContainer } from "../../resources/Styles/global";
+import { Button, ImageBgContainer } from "../../resources/styles/global";
 import { Container, Grid } from "@material-ui/core";
 
 import {

@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectOrders, activeOrderChanged } from "../../state/orders.slice";
 
 import destination from "../../resources/images/Destination.svg";
-import { Container } from "../../resources/Styles/global";
+import { Container } from "../../resources/styles/global";
 import { Box } from "./driver.elements";
 
 import {

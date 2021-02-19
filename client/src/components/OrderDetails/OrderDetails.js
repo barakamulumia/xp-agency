@@ -7,7 +7,7 @@ import {
 } from "../../state/orders.slice";
 
 import { DriverAPI, ClientAPI } from "../../api";
-import { Button } from "../../resources/Styles/global";
+import { Button } from "../../resources/styles/global";
 
 import {
   OrderDetailsContainer,
