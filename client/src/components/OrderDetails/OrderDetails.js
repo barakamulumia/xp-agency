@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { currencyToString } from "../../resources/utils/price";
+
 import {
   updateOrder,
   ordersFilterChanged,
@@ -82,7 +84,13 @@ const OrderDetails = ({ user }) => {
       </OrderColumn>
       <OrderColumn>
         <OrderItem>Charges: </OrderItem>
-        <OrderValue>{order.charges}</OrderValue>
+        <OrderValue
+          style={{
+            letterSpacing: "3px",
+          }}
+        >
+          {currencyToString(order.charges)}
+        </OrderValue>
       </OrderColumn>
       {user.role === "client"
         ? driver && (
