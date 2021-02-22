@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import { Footer, Navbar, OrderForm, TruckCard } from "../../components";
+import { Footer, Navbar, OrderForm, TruckCard, Price } from "../../components";
 import { Box } from "./client.elements";
-import { Container } from "../../resources/Styles/global";
+import { Container } from "../../resources/styles/global";
 
 import { Grid } from "@material-ui/core";
 
@@ -20,7 +20,14 @@ export default function OrderTruck() {
               <OrderForm />
             </Grid>
             <Grid item xs={12} sm={6} md={6}>
-              <TruckCard />
+              <Grid container direction="column">
+                <Grid item>
+                  <TruckCard />
+                </Grid>
+                <Grid item>
+                  <Price />
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Container>
