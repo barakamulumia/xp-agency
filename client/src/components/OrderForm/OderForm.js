@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { addNewOrder, ordersFilterChanged } from "../../state/orders.slice";
 import { selectDestination, selectPickUp } from "../../state/maps.slice";
+import { AuthAPI } from "../../api";
 
 import {
   Select,
@@ -28,9 +29,11 @@ import {
 
 import { FaHelicopter } from "react-icons/fa";
 import MapSearchInput from "../Map/mapinput";
+import calcPriceFromLatLng from "../../resources/utils/price";
 
 const OderForm = () => {
   const dispatch = useDispatch();
+  const client = AuthAPI.getCurrentUser();
 
   const [moveType, setMoveType] = useState("fr");
   const [numOfBedRooms, setNumOfBedrooms] = useState("");
@@ -56,6 +59,7 @@ const OderForm = () => {
 
   const pickup = useSelector(selectPickUp);
   const destination = useSelector(selectDestination);
+
   const canSave =
     [pickup, destination, moveType].every(Boolean) &&
     addRequestStatus === "idle";
@@ -66,7 +70,7 @@ const OderForm = () => {
         setAddRequestStatus("pending");
         const orderObj = {
           moveType,
-          clientId: "601667e4d14c2715888e4623",
+          clientId: client.id,
           driverId: "601fc95aa69bba33f4e2ad58",
           load:
             moveType === "hm"
@@ -76,7 +80,7 @@ const OderForm = () => {
               : "Designated",
           pickup,
           destination,
-          charges: 4000,
+          charges: calcPriceFromLatLng(pickup, destination),
         };
         const resultAction = await dispatch(addNewOrder(orderObj));
         unwrapResult(resultAction);
@@ -89,6 +93,10 @@ const OderForm = () => {
       }
     }
   };
+
+  if (!client) {
+    return null;
+  }
 
   return (
     <Container component="main" maxWidth="xs">
