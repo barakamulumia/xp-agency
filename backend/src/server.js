@@ -10,7 +10,8 @@ const URI = `mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`;
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: ["http://localhost:3000", "http://localhost:4000"],
+  "Access-Control-Expose-Headers": true,
 };
 
 app.use(cors(corsOptions));
@@ -50,6 +51,9 @@ require("./routes/user.routes")(app);
 require("./routes/order.routes")(app);
 require("./routes/client.routes")(app);
 require("./routes/driver.routes")(app);
+
+/**admin */
+require("./admin/routes/user.routes")(app);
 
 app.get("/", (_req, res) => res.send("Hello World!"));
 
