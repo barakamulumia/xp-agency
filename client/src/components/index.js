@@ -13,3 +13,4 @@ export { default as OrderCard } from "./OrderCard/OrderCard";
 export { default as OrderDetails } from "./OrderDetails/OrderDetails";
 export { default as ClientInfoSection } from "./InfoSection/ClientInfoSection";
 export { default as Orders } from "./Orders/Orders";
+export { default as Price } from "./Price/price";
