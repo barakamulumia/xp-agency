@@ -30,7 +30,7 @@ exports.signup = (req, res) => {
         lastname,
         phoneno,
         email,
-        password: bcrypt.hashSync(userPassword, 11),
+        password: bcrypt.hashSync(userPassword, 10),
         role: role._id,
       });
 
