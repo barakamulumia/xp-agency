@@ -26,7 +26,8 @@ const dataProvider = {
 
 const App = () => (
   <Admin dataProvider={dataProvider}>
-    <Resource name="users" list={ListGuesser} />
+    <Resource name="clients" list={ListGuesser} />
+    <Resource name="drivers" list={ListGuesser} />
   </Admin>
 );
 
