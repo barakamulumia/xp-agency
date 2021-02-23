@@ -53,7 +53,8 @@ require("./routes/client.routes")(app);
 require("./routes/driver.routes")(app);
 
 /**admin */
-require("./admin/routes/user.routes")(app);
+require("./admin/routes/client.routes")(app);
+require("./admin/routes/driver.routes")(app);
 
 app.get("/", (_req, res) => res.send("Hello World!"));
 
