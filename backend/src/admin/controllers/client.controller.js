@@ -2,7 +2,10 @@ const bcrypt = require("bcrypt");
 const db = require("../../models");
 const User = db.user;
 const Role = db.role;
-
+/**
+ * (node:11792) DeprecationWarning: Mongoose: `findOneAndUpdate()` and `findOneAndDelete()` without the `useFindAndModify` option set to false are deprecated. See: https://mongoosejs.com/docs/deprecations.html#findandmodify
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ */
 module.exports = {
   create: async (req, res) => {
     const {
@@ -11,12 +14,11 @@ module.exports = {
       phoneno,
       email,
       password: userPassword,
-      role,
     } = req.body;
 
     Role.findOne(
       {
-        name: role,
+        name: "client",
       },
       (err, role) => {
         if (err) {
@@ -37,7 +39,7 @@ module.exports = {
             res.status(500).json({ message: err });
             return;
           }
-          res.json({ message: "User was reqistered successfully" });
+          res.status(200).json(user);
         });
       }
     );
@@ -130,7 +132,7 @@ module.exports = {
   update: async (req, res) => {
     const clientId = req.params.id;
     const updates = req.body;
-    User.findByIdAndUpdate(clientId, updates, (err, res) => {
+    User.findByIdAndUpdate(clientId, updates, (err, response) => {
       if (err) {
         res.status(500).json({
           message: err,
@@ -144,7 +146,9 @@ module.exports = {
           });
           return;
         }
-        res.status(200).json(client);
+        res.status(200).json({
+          data: { ...client, id: client._id },
+        });
       });
     });
   },
@@ -165,6 +169,9 @@ module.exports = {
           return;
         }
         User.findByIdAndDelete(clientId);
+        res.status(200).json({
+          data: { ...client, id: client._id },
+        });
       }
     });
   },
