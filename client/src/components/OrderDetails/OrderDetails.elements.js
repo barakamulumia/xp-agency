@@ -5,8 +5,7 @@ export const OrderDetailsContainer = styled(Paper)`
   background-color: rgba(0, 0, 0, 0.8) !important;
   margin-top: 64px;
   padding: 16px;
-  max-width: 520px;
-  min-width: 400px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: start;

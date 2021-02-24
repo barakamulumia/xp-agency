@@ -67,7 +67,7 @@ export default function Client() {
               <Navbar />
               <ClientInfoSection {...ClientInfo} />
             </Container>
-            <Container>
+            <Container id="orders">
               <Grid container justify="space-between">
                 <Grid item>
                   <Orders setActiveIndex={setActiveIndex} user={user} />

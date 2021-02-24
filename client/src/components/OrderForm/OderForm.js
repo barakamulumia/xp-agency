@@ -85,7 +85,7 @@ const OderForm = () => {
         const resultAction = await dispatch(addNewOrder(orderObj));
         unwrapResult(resultAction);
         dispatch(ordersFilterChanged("pending"));
-        history.push("/client");
+        history.push("/client#orders");
       } catch (err) {
         console.error("Failed to save the order: ", err);
       } finally {

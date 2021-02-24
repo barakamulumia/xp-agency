@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Paper, Button } from "@material-ui/core";
 
 export const OrderCardContainer = styled.div`
-  max-width: 600px;
-  width: 600px;
+  max-width: 500px;
+  width: 500px;
   margin-top: 64px;
   padding: 8px;
   display: flex;
