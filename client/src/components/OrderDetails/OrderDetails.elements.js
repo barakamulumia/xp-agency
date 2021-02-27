@@ -5,7 +5,7 @@ export const OrderDetailsContainer = styled(Paper)`
   background-color: rgba(0, 0, 0, 0.8) !important;
   margin-top: 64px;
   padding: 16px;
-  max-width: 400px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -46,4 +46,11 @@ export const OrderValue = styled.p`
   margin: 4px;
   border-bottom: 2px solid #fff;
   font-weight: 300;
+`;
+
+export const OrderStatus = styled(OrderValue)`
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 3px;
+  font-weight: 500;
 `;

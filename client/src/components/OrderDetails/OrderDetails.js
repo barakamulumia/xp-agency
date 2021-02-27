@@ -17,6 +17,7 @@ import {
   OrderColumn,
   OrderItem,
   OrderValue,
+  OrderStatus,
 } from "./OrderDetails.elements";
 
 const OrderDetails = ({ user }) => {
@@ -69,7 +70,7 @@ const OrderDetails = ({ user }) => {
   }
   return (
     <OrderDetailsContainer>
-      <OrderDetailsHeader>Xpress Kenya</OrderDetailsHeader>
+      <OrderDetailsHeader>translify</OrderDetailsHeader>
       <OrderColumn>
         <OrderItem>Order No:</OrderItem>
         <OrderValue>{orderId.slice(0, 8)}</OrderValue>
@@ -117,7 +118,7 @@ const OrderDetails = ({ user }) => {
       </OrderColumn>
       <OrderColumn>
         <OrderItem>Status: </OrderItem>
-        <OrderValue>{order.status}</OrderValue>
+        <OrderStatus>{order.status}</OrderStatus>
       </OrderColumn>
       {order.status === "pending" &&
         (user.role === "driver" ? (
