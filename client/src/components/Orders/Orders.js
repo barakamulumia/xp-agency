@@ -5,6 +5,7 @@ import {
   selectOrders,
   fetchOrders,
   ordersFilterChanged,
+  selectFilter,
 } from "../../state/orders.slice";
 
 import { LinkButton } from "../../resources/styles/global";
@@ -16,12 +17,15 @@ import {
   MdImportExport,
   MdCheck,
 } from "react-icons/md";
+import { IconContext } from "react-icons/lib";
 
 import {
   OrderCardContainer,
   OrderCardHeader,
   OrdersNav,
   FilterButton,
+  Icon,
+  FilterText,
   Notification,
   Message,
 } from "./Orders.elements";
@@ -31,8 +35,11 @@ const Orders = ({ setActiveIndex, user }) => {
   const orders = useSelector(selectOrders);
   const order_status = useSelector((state) => state.orders.status);
   const error = useSelector((state) => state.orders.error);
+  const filter = useSelector(selectFilter);
 
   const handleFilterChange = (filter) => dispatch(ordersFilterChanged(filter));
+
+  const active_filter = (current_filter) => current_filter === filter;
 
   useEffect(() => {
     if (order_status === "idle") {
@@ -73,46 +80,58 @@ const Orders = ({ setActiveIndex, user }) => {
   }
 
   return (
-    <div>
+    <IconContext.Provider
+      value={{
+        color: "#00f",
+        width: "100%",
+        height: "100%",
+      }}
+    >
       <Grid item>
         <OrderCardContainer>
-          <OrderCardHeader>My Trips</OrderCardHeader>
+          <OrderCardHeader>My Transits</OrderCardHeader>
           <OrdersNav>
             <FilterButton
-              variant="contained"
+              warning={active_filter("pending")}
               onClick={() => handleFilterChange("pending")}
-              startIcon={<MdAccessAlarm />}
             >
-              Pending
+              <Icon>
+                <MdAccessAlarm />
+              </Icon>
+              <FilterText>Pending</FilterText>
             </FilterButton>
             <FilterButton
+              warning={active_filter("cancelled")}
               onClick={() => handleFilterChange("cancelled")}
-              variant="contained"
-              color="secondary"
-              startIcon={<MdWarning />}
             >
-              Cancelled
+              <Icon>
+                <MdWarning />
+              </Icon>
+              <FilterText>Cancelled</FilterText>
             </FilterButton>
             <FilterButton
+              warning={active_filter("in-progress")}
               onClick={() => handleFilterChange("in-progress")}
-              variant="contained"
-              startIcon={<MdImportExport />}
             >
-              InProgress
+              <Icon>
+                <MdImportExport />
+              </Icon>
+              <FilterText>InProgress</FilterText>
             </FilterButton>
             <FilterButton
+              warning={active_filter("successfull")}
               onClick={() => handleFilterChange("successfull")}
-              variant="contained"
-              color="primary"
-              startIcon={<MdCheck />}
             >
-              Successfull
+              <Icon>
+                <MdCheck />
+              </Icon>
+              <FilterText>Successfull</FilterText>
             </FilterButton>
           </OrdersNav>
           {content}
         </OrderCardContainer>
       </Grid>
-    </div>
+    </IconContext.Provider>
   );
 };
 

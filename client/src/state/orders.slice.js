@@ -87,4 +87,5 @@ export const selectOrderById = (state, orderId) =>
 
 export const selectActiveOrder = (state) => state.orders.activeOrder;
 
+export const selectFilter = (state) => state.orders.filter;
 export default OrdersSlice.reducer;
