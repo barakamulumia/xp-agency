@@ -2,10 +2,7 @@ const bcrypt = require("bcrypt");
 const db = require("../../models");
 const User = db.user;
 const Role = db.role;
-/**
- * (node:11792) DeprecationWarning: Mongoose: `findOneAndUpdate()` and `findOneAndDelete()` without the `useFindAndModify` option set to false are deprecated. See: https://mongoosejs.com/docs/deprecations.html#findandmodify
-(Use `node --trace-deprecation ...` to show where the warning was created)
- */
+
 module.exports = {
   create: async (req, res) => {
     const {
