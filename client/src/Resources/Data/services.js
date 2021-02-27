@@ -6,7 +6,7 @@ export const services = [
     footer: "Let us bring your products to the world",
   },
   {
-    heading: "Drive With Xpress",
+    heading: "Drive With translify",
     content:
       "Are you a truck driver looking to be connected to customers all ound the nation? come join us and get paid to sit behind the wheel, do not get stuck with the rest, truck with the best.",
     footer: "Millions of miles - Millions of smiles",

@@ -40,7 +40,7 @@ export default function Profile() {
         <ImageBgContainer>
           <Navbar />
           <GreetingLine>
-            Gerretings&nbsp;&nbsp;{currentUser.firstname}
+            Greetings&nbsp;&nbsp;{currentUser.firstname}
           </GreetingLine>
           <Grid container spacing={2} justify="space-between">
             <Grid item md={5} sm={8} xs={12}>
