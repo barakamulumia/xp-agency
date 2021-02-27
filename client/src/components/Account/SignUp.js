@@ -64,7 +64,6 @@ export default function SignUp({ route }) {
         AuthAPI.login(email, password, role).then(
           () => {
             history.push(`/${route}`);
-            window.location.reload();
           },
           (error) => {
             const resMessage =
@@ -169,6 +168,7 @@ export default function SignUp({ route }) {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  placeholder="e.g johdoe@gmail.com"
                 />
                 <ValidationError
                   errors={errors}
@@ -192,6 +192,7 @@ export default function SignUp({ route }) {
                   id="phoneno"
                   required
                   autoComplete="phoneno"
+                  placeholder="e.g 0712345678"
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -213,6 +214,7 @@ export default function SignUp({ route }) {
                     required: true,
                     pattern: ValidationPatterns.password,
                   })}
+                  placeholder=" e.g 123Asd"
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">

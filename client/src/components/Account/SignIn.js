@@ -62,7 +62,6 @@ export default function SignUp({ route }) {
       () => {
         history.push(`/${route}`);
         setLoading(false);
-        window.location.reload();
       },
 
       (error) => {
