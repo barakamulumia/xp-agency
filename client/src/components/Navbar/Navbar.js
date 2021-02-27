@@ -78,7 +78,20 @@ const Navbar = () => {
             <NavbarContainer>
               <NavLogo to="/" onClick={closeMobileMenu}>
                 <NavIcon />
-                XpressKenya
+                <i
+                  style={{
+                    letterSpacing: "2px",
+                  }}
+                >
+                  <b
+                    style={{
+                      color: "#e3fc56",
+                    }}
+                  >
+                    trans
+                  </b>
+                  lify
+                </i>
               </NavLogo>
               <MobileIcon onClick={toggleMobileMenu}>
                 {click ? <FaTimes /> : <FaBars />}

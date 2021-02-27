@@ -72,7 +72,7 @@ const DecisionDialog = ({ btnText, actionText, primary, small, big }) => {
               <DialogMediaWrapper>
                 <DialogMedia src="https://i.postimg.cc/4yDjR3G8/packing-boxes.jpg" />
               </DialogMediaWrapper>
-              <DialogTextContent>Ship with xpresskenya</DialogTextContent>
+              <DialogTextContent>Haul with translify</DialogTextContent>
             </DialogContent>
             <DialogActions>
               <LinkButton
