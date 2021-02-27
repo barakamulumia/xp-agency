@@ -10,7 +10,13 @@ import {
   Menu,
 } from "@material-ui/core";
 
-import { UserLogo, DashBoardIcon, NavLink } from "./UserNav.elements";
+import {
+  UserLogo,
+  DashBoardIcon,
+  NavLink,
+  AppTitle,
+  AccountDropDown,
+} from "./UserNav.elements";
 
 import {
   MdAccountCircle,
@@ -160,7 +166,7 @@ export default function UserNav({ user, logOutCallBack }) {
         >
           <MdAccountCircle />
         </IconButton>
-        <p>Account</p>
+        <AccountDropDown>Account</AccountDropDown>
       </MenuItem>
     </Menu>
   );
@@ -170,15 +176,16 @@ export default function UserNav({ user, logOutCallBack }) {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <UserLogo to={`/${user.role}`}>
+            <AppTitle>translify</AppTitle> &nbsp;
             <DashBoardIcon />
-            {formatName(user.firstname)}
+            {formatName(user.firstname)}&nbsp;{formatName(user.lastname)}
           </UserLogo>
           <br />
 
           <div className={classes.grow} />
           <div>
             {user.role === "client" && (
-              <NavLink to="/client/order-truck">Order Truck</NavLink>
+              <NavLink to="/client/order-truck">Order</NavLink>
             )}
           </div>
           <div className={classes.sectionDesktop}>
