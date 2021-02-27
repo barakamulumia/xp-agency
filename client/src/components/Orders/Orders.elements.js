@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { Paper, Button } from "@material-ui/core";
+import { Paper } from "@material-ui/core";
+import { Button } from "../../resources/styles/global";
 
 export const OrderCardContainer = styled.div`
-  max-width: 500px;
-  width: 500px;
+  width: 100%;
   margin-top: 64px;
   padding: 8px;
   display: flex;
@@ -31,9 +31,23 @@ export const OrdersNav = styled(Paper)`
 
 export const FilterButton = styled(Button)`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-content: center;
   margin: 5px;
+`;
+export const FilterText = styled.p`
+  @media screen and (max-width: 960px) {
+    display: none;
+  }
+`;
+
+export const Icon = styled.p`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  @media screen and (max-width: 960px) {
+    flex-grow: 1;
+  }
 `;
 
 export const Notification = styled(Paper)`
