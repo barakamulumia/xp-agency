@@ -34,7 +34,8 @@ export const FooterSubHeading = styled.p`
 
 export const Form = styled.form`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  width: 100%;
 
   @media screen and (max-width: 820px) {
     flex-direction: column;
@@ -44,6 +45,8 @@ export const Form = styled.form`
 
 export const FormInput = styled.input`
   padding: 10px 20px;
+  height: 60px;
+  flex-grow: 1;
   border-radius: 2px;
   margin-right: 10px;
   outline: 1px solid #fff;
@@ -53,6 +56,7 @@ export const FormInput = styled.input`
   &::placeholder {
     color: #242424;
   }
+
   @media screen and (max-width: 820px) {
     margin: 0 0 16px 0;
     width: 100%;

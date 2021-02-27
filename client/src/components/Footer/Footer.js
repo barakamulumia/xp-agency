@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaFacebook,
   FaInstagram,
@@ -30,6 +30,15 @@ import {
 } from "./Footer.elements";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email) {
+      console.log(email);
+      setEmail("");
+    }
+  };
   return (
     <FooterContainer>
       <FooterSectionContainer>
@@ -38,9 +47,16 @@ const Footer = () => {
           amaizing offers
         </FooterHeading>
         <FooterSubHeading>You can opt out anytime</FooterSubHeading>
-        <Form onSubmit={(e) => e.preventDefault()}>
-          <FormInput name="email" type="email" placeholder="Your Email" />
-          <Button fontBig>Subscribe</Button>
+        <Form>
+          <FormInput
+            name="email"
+            type="email"
+            placeholder="Your Email"
+            value={email}
+          />
+          <Button type="button" big onClick={handleSubscribe}>
+            Subscribe
+          </Button>
         </Form>
       </FooterSectionContainer>
       <FooterLinksContainer>
@@ -67,9 +83,9 @@ const Footer = () => {
         <SocialMediaWrap>
           <SocialLogo to="/">
             <SocialIcon />
-            XpressKenya
+            translify
           </SocialLogo>
-          <WebRights>&copy;&nbsp;XpressKenya&nbsp;2020</WebRights>
+          <WebRights>&copy;&nbsp;transilify&nbsp;2020</WebRights>
           <SocialIcons>
             <SocialIconLink
               href="https://www.linkedin.com/"
@@ -86,7 +102,7 @@ const Footer = () => {
               <FaFacebook />
             </SocialIconLink>
             <SocialIconLink
-              href="https://www.twitch.tv/"
+              href="https://www.instagram.com/"
               target="_blank"
               aria-label="instagaram"
             >
