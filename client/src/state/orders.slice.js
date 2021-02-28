@@ -70,6 +70,9 @@ const OrdersSlice = createSlice({
     [updateOrder.fulfilled]: (state, action) => {
       state.status = "succeeded";
       state.orders = action.payload;
+      state.activeOrder = state.orders.filter(
+        (order) => order.status === state.filter
+      )[0];
     },
   },
 });
