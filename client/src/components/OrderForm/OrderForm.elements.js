@@ -1,4 +1,4 @@
-import { Paper, Avatar, FormControl } from "@material-ui/core";
+import { Paper, Avatar, FormControl, MenuItem } from "@material-ui/core";
 import styled from "styled-components";
 import { Button } from "../../resources/styles/global";
 
@@ -40,4 +40,9 @@ export const FormContainer = styled.div`
 
 export const Label = styled.p`
   color: #01114d;
+`;
+
+export const Option = styled(MenuItem)`
+  padding: 16px !important;
+  background-color: #ddd;
 `;
