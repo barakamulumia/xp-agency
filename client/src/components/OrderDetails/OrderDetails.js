@@ -90,7 +90,7 @@ const OrderDetails = ({ user }) => {
             letterSpacing: "3px",
           }}
         >
-          {currencyToString(order.charges)}
+          Ksh:&nbsp;{currencyToString(order.charges)}
         </OrderValue>
       </OrderColumn>
       {user.role === "client"
