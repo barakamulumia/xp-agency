@@ -34,8 +34,8 @@ const Order = mongoose.model(
       type: Number,
     },
     load: {
-      type: String,
-      default: "Designated",
+      type: Number,
+      default: 1,
     },
     status: {
       type: String,
