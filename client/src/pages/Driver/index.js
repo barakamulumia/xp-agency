@@ -70,15 +70,15 @@ export default function Driver() {
     <div>
       {userReady ? (
         <div>
-          <Box>
+          <Box container justify="space-between">
             <Container>
               <Navbar />
               {isVerified ? (
-                <Grid container justify="space-between">
-                  <Grid item>
+                <Grid container spacing={8} justify="center">
+                  <Grid item xs={12} sm={8} md={6}>
                     <Orders setActiveIndex={setActiveIndex} user={user} />
                   </Grid>
-                  <Grid item>
+                  <Grid item xs={12} sm={8} md={6}>
                     {orders.length && <OrderDetails user={user} />}
                   </Grid>
                 </Grid>
