@@ -26,7 +26,7 @@ export const Container = styled.div`
 
 export const Button = styled.button`
   box-sizing: border-box;
-  min-width: 64px;
+  min-width: ${({ fullWidth }) => (fullWidth ? "100%" : "64px")};
   margin: 5px;
   padding: ${({ big, small }) =>
     small ? "4px 16px" : big ? "12px 64px" : "8px 32px"};
@@ -59,9 +59,9 @@ export const Button = styled.button`
     opacity: 0.9;
   }
 
-&:disabled {
-  opacity: 0.4
-}
+  &:disabled {
+    opacity: 0.4;
+  }
 
   @media screen and (max-width: 960px) {
     width: 100%;
