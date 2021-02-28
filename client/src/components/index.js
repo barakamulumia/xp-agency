@@ -14,3 +14,5 @@ export { default as OrderDetails } from "./OrderDetails/OrderDetails";
 export { default as ClientInfoSection } from "./InfoSection/ClientInfoSection";
 export { default as Orders } from "./Orders/Orders";
 export { default as Price } from "./Price/price";
+export { default as PersonalDetails } from "./Profile/PersonalDetails";
+export { default as MobileMoney } from "./Profile/MobileMoney";
