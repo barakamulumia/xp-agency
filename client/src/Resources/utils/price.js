@@ -1,8 +1,4 @@
-export default function calcPriceFromLatLng(
-  pickup,
-  destination,
-  to_string = false
-) {
+export default function calcPriceFromLatLng(pickup, destination, load = 1) {
   const R = 6371e3; //Radius of the earth in metres
 
   const φ1 = (pickup.latlng.lat * Math.PI) / 180; // φ, λ in radians
@@ -15,9 +11,26 @@ export default function calcPriceFromLatLng(
     Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-  const price = Math.round(((R * c) / 10) * 100) / 100;
+  let price = Math.round(((R * c) / 10) * 100) / 100;
 
-  return price;
+  switch (load) {
+    case 5:
+      price *= 1.6;
+      break;
+    case 4:
+      price *= 1.45;
+      break;
+    case 3:
+      price *= 1.3;
+      break;
+    case 2:
+      price *= 1.15;
+      break;
+    default:
+      price *= 1;
+      break;
+  }
+  return Math.round(price * 100) / 100;
 }
 
 export const currencyToString = (currency) =>

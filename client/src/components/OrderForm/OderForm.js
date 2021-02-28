@@ -3,18 +3,22 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { addNewOrder, ordersFilterChanged } from "../../state/orders.slice";
-import { selectDestination, selectPickUp } from "../../state/maps.slice";
+import {
+  selectDestination,
+  selectPickUp,
+  selectLoad,
+  loadSelected,
+  locationUpdated,
+} from "../../state/maps.slice";
 import { AuthAPI } from "../../api";
 
 import {
   Select,
   InputLabel,
-  MenuItem,
   Container,
   CssBaseline,
   Typography,
   Grid,
-  TextField,
 } from "@material-ui/core";
 
 import {
@@ -25,6 +29,7 @@ import {
   FormControlWrapper,
   FormContainer,
   Label,
+  Option,
 } from "./OrderForm.elements";
 
 import { FaHelicopter } from "react-icons/fa";
@@ -34,10 +39,11 @@ import calcPriceFromLatLng from "../../resources/utils/price";
 const OderForm = () => {
   const dispatch = useDispatch();
   const client = AuthAPI.getCurrentUser();
+  const pickup = useSelector(selectPickUp);
+  const destination = useSelector(selectDestination);
+  const load = useSelector(selectLoad);
 
   const [moveType, setMoveType] = useState("fr");
-  const [numOfBedRooms, setNumOfBedrooms] = useState("");
-  const [approxFeet, setApproxFeet] = useState("");
   const [addRequestStatus, setAddRequestStatus] = useState("idle");
 
   const history = useHistory();
@@ -45,20 +51,13 @@ const OderForm = () => {
   const handleMoveTypeChange = (event) => {
     setMoveType(event.target.value);
   };
-
-  const handleNumOfBedroomsChange = (event) => {
-    setNumOfBedrooms(event.target.value);
-  };
-
-  const handleAproxFeetChange = (event) => {
-    setApproxFeet(event.target.value);
+  const handleLoadChange = (event) => {
+    dispatch(loadSelected(event.target.value));
   };
 
   const isHouseMoving = () => moveType === "hm";
   const isOfficeMoving = () => moveType === "om";
-
-  const pickup = useSelector(selectPickUp);
-  const destination = useSelector(selectDestination);
+  const isFreightMoving = () => moveType === "fr";
 
   const canSave =
     [pickup, destination, moveType].every(Boolean) &&
@@ -72,15 +71,10 @@ const OderForm = () => {
           moveType,
           clientId: client.id,
           driverId: "601fc95aa69bba33f4e2ad58",
-          load:
-            moveType === "hm"
-              ? `${numOfBedRooms} Bed rooms`
-              : moveType === "om"
-              ? `${approxFeet} Ft`
-              : "Designated",
+          load,
           pickup,
           destination,
-          charges: calcPriceFromLatLng(pickup, destination),
+          charges: calcPriceFromLatLng(pickup, destination, load),
         };
         const resultAction = await dispatch(addNewOrder(orderObj));
         unwrapResult(resultAction);
@@ -90,6 +84,8 @@ const OderForm = () => {
         console.error("Failed to save the order: ", err);
       } finally {
         setAddRequestStatus("idle");
+        dispatch(locationUpdated({ inputType: "pickup", details: null }));
+        dispatch(locationUpdated({ inputType: "destination", details: null }));
       }
     }
   };
@@ -106,28 +102,64 @@ const OderForm = () => {
           <FaHelicopter />
         </FormAvatar>
         <Typography component="h1" variant="h5">
-          Xpress Shipping
+          <i> haul&nbsp;with&nbsp;</i>
+          <i
+            style={{
+              letterSpacing: "3px",
+            }}
+          >
+            <b
+              style={{
+                color: "#022144",
+              }}
+            >
+              trans
+            </b>
+            lify
+          </i>
         </Typography>
         <Form>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <FormControlWrapper variant="outlined">
                 <InputLabel id="service-select-outlined-label">
-                  What are you moving
+                  What are you Moving
                 </InputLabel>
                 <Select
                   labelId="service-select-outlined-label"
                   id="service-select-outlined"
                   value={moveType}
                   onChange={handleMoveTypeChange}
-                  label="Service"
+                  label="What are you Moving"
                 >
-                  <MenuItem value="fr">Freight</MenuItem>
-                  <MenuItem value="hm">House Moving</MenuItem>
-                  <MenuItem value="om">Office Moving</MenuItem>
+                  <Option value="fr">Freight</Option>
+                  <Option value="hm">House Moving</Option>
+                  <Option value="om">Office Moving</Option>
                 </Select>
               </FormControlWrapper>
             </Grid>
+            {isFreightMoving() && (
+              <Grid item xs={12}>
+                <FormControlWrapper variant="outlined">
+                  <InputLabel id="freight-select-outlined-label">
+                    Approx Weight
+                  </InputLabel>
+                  <Select
+                    labelId="freight-select-outlined-label"
+                    id="freight-select-outlined"
+                    value={load}
+                    onChange={handleLoadChange}
+                    label="Approx Weight"
+                  >
+                    <Option value={1}>0-1 Tone</Option>
+                    <Option value={2}>1-2 Tones</Option>
+                    <Option value={3}>2-3 Tones</Option>
+                    <Option value={4}>4-5 Tones</Option>
+                    <Option value={5}>More than 5 Tones</Option>
+                  </Select>
+                </FormControlWrapper>
+              </Grid>
+            )}
             {isHouseMoving() && (
               <Grid item xs={12}>
                 <FormControlWrapper variant="outlined">
@@ -137,36 +169,39 @@ const OderForm = () => {
                   <Select
                     labelId="bdrms-select-outlined-label"
                     id="bdrms-select-outlined"
-                    value={numOfBedRooms}
-                    onChange={handleNumOfBedroomsChange}
+                    value={load}
+                    onChange={handleLoadChange}
                     label="Number of Bedrooms"
                   >
-                    <MenuItem value="">
-                      <em></em>
-                    </MenuItem>
-                    <MenuItem value={1}>1 Bed Room</MenuItem>
-                    <MenuItem value={2}>2 Bed Rooms</MenuItem>
-                    <MenuItem value={3}>3 Bed Rooms</MenuItem>
-                    <MenuItem value={4}>4 Bed Rooms</MenuItem>
-                    <MenuItem value={5}>5 Bed Rooms</MenuItem>
+                    <Option value={1}>1 Bed Room</Option>
+                    <Option value={2}>2 Bed Rooms</Option>
+                    <Option value={3}>3 Bed Rooms</Option>
+                    <Option value={4}>4 Bed Rooms</Option>
+                    <Option value={5}>5 Bed Rooms</Option>
                   </Select>
                 </FormControlWrapper>
               </Grid>
             )}
             {isOfficeMoving() && (
               <Grid item xs={12}>
-                <TextField
-                  style={{
-                    width: "100%",
-                  }}
-                  variant="outlined"
-                  type="text"
-                  id="approxFeet"
-                  label="Aproximate Feet"
-                  name="approxFeet"
-                  onChange={handleAproxFeetChange}
-                  value={approxFeet}
-                />
+                <FormControlWrapper variant="outlined">
+                  <InputLabel id="office-select-outlined-label">
+                    Approx SQ Feet
+                  </InputLabel>
+                  <Select
+                    labelId="office-select-outlined-label"
+                    id="office-select-outlined"
+                    value={load}
+                    onChange={handleLoadChange}
+                    label="Approx SQ Feet"
+                  >
+                    <Option value={1}>0 -2500 sq/ft</Option>
+                    <Option value={2}>2500-4500 sq/ft</Option>
+                    <Option value={3}>4500 -7000 sq/ft</Option>
+                    <Option value={4}>7000 -10000 sq/ft</Option>
+                    <Option value={5}>Above 10000 sq/ft</Option>
+                  </Select>
+                </FormControlWrapper>
               </Grid>
             )}
             <Grid item xs={12}>

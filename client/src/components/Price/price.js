@@ -4,7 +4,11 @@ import calcPriceFromLatLng, {
   currencyToString,
 } from "../../resources/utils/price";
 
-import { selectDestination, selectPickUp } from "../../state/maps.slice";
+import {
+  selectDestination,
+  selectPickUp,
+  selectLoad,
+} from "../../state/maps.slice";
 import {
   PriceContainer,
   PriceSymbol,
@@ -15,6 +19,7 @@ import {
 const Price = () => {
   const pickup = useSelector(selectPickUp);
   const destination = useSelector(selectDestination);
+  const load = useSelector(selectLoad);
 
   let content;
 
@@ -24,7 +29,7 @@ const Price = () => {
         <PriceContainer>
           <PriceSymbol>Ksh:</PriceSymbol>
           <PriceAmount>
-            {currencyToString(calcPriceFromLatLng(pickup, destination))}
+            {currencyToString(calcPriceFromLatLng(pickup, destination, load))}
           </PriceAmount>
         </PriceContainer>
       </PriceWrapper>

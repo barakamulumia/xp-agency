@@ -32,9 +32,10 @@ export const OrdersNav = styled(Paper)`
 export const FilterButton = styled(Button)`
   display: flex;
   justify-content: space-between;
-  align-content: center;
+  align-items: center;
   margin: 5px;
 `;
+
 export const FilterText = styled.p`
   @media screen and (max-width: 960px) {
     display: none;
@@ -44,7 +45,8 @@ export const FilterText = styled.p`
 export const Icon = styled.p`
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
+
   @media screen and (max-width: 960px) {
     flex-grow: 1;
   }
@@ -58,7 +60,6 @@ export const Notification = styled(Paper)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
   align-items: center;
 `;
 
