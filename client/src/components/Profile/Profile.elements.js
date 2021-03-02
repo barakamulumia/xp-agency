@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Paper, Avatar } from "@material-ui/core";
 
 export const GreetingLine = styled.h3`
   font-size: 42px;
@@ -58,4 +59,20 @@ export const TransactionAmount = styled.p`
   font-weight: 300;
   font-style: italic;
   color: blue;
+`;
+
+export const FormPaper = styled(Paper)`
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const Form = styled.form`
+  width: 100%;
+`;
+
+export const FormAvatar = styled(Avatar)`
+  background-color: #f48fb1;
+  margin: 8px;
 `;

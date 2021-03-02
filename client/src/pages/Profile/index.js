@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { Navbar, PersonalDetails, MobileMoney } from "../../components";
 import { AuthAPI } from "../../api";
-import { Button, ImageBgContainer } from "../../resources/styles/global";
-import { Container, Grid } from "@material-ui/core";
+import { ImageBgContainer } from "../../resources/styles/global";
+import { Grid } from "@material-ui/core";
 
 import {
   GreetingLine,
@@ -17,7 +17,7 @@ import {
 export default function Profile() {
   const [redirect, setRedirect] = useState(null);
   const [userReady, setUserReady] = useState(null);
-  const [currentUser, setCurrentUser] = useState({ username: "" });
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     const currentUser = AuthAPI.getCurrentUser();
@@ -71,7 +71,7 @@ export default function Profile() {
               padding: "10px",
             }}
           >
-            <MobileMoney />
+            <MobileMoney user={currentUser} />
           </div>
         </ImageBgContainer>
       ) : null}

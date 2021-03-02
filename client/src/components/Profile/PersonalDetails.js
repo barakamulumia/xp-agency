@@ -43,7 +43,7 @@ export default function PersonalInfo({ currentUser }) {
             flexDirection: "column",
           }}
         >
-          <EditInfoDialog />
+          <EditInfoDialog user={currentUser} />
           <ChangePasswordDialog />
         </div>
       </ProfileSection>
