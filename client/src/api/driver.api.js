@@ -1,6 +1,7 @@
 import axios from "axios";
+import { BASE_URL } from "./api.config";
 
-const API_URL = "http://localhost:8080/api/drivers/";
+const API_URL = BASE_URL + "drivers/";
 
 class DriverAPI {
   getDriverById(driverid) {

@@ -1,6 +1,7 @@
 import axios from "axios";
+import { BASE_URL } from "./api.config";
 
-const API_URL = "http://localhost:8080/api/orders/";
+const API_URL = BASE_URL + "orders/";
 
 class OrderAPI {
   getAllOrders(userid, role) {
