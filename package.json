@@ -1,5 +1,5 @@
 {
-  "name": "xp-agency",
+  "name": "translify",
   "version": "1.0.0",
   "description": "Web Application for a freight forwarding Agency",
   "main": "index.js",
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/barakamulumia/xp-agency.git"
+    "url": "git+https://github.com/barakamulumia/translify.git"
   },
   "author": "barakamulumia",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/barakamulumia/xp-agency/issues"
+    "url": "https://github.com/barakamulumia/translify/issues"
   },
-  "homepage": "https://github.com/barakamulumia/xp-agency#readme",
+  "homepage": "https://github.com/barakamulumia/translify#readme",
   "devDependencies": {
     "concurrently": "^5.3.0"
   },

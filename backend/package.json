@@ -1,6 +1,6 @@
 {
-  "name": "server",
-  "version": "1.0.0",
+  "name": "translify-server",
+  "version": "0.1.0",
   "description": "server side code",
   "main": "server.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/barakamulumia/xp-agency.git"
+    "url": "git+https://github.com/barakamulumia/translify.git"
   },
   "keywords": [
     "Express",
@@ -18,9 +18,9 @@
   "author": "barakamulumia",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/barakamulumia/xp-agency/issues"
+    "url": "https://github.com/barakamulumia/translify/issues"
   },
-  "homepage": "https://github.com/barakamulumia/xp-agency#readme",
+  "homepage": "https://github.com/barakamulumia/translify#readme",
   "dependencies": {
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
