@@ -9,6 +9,7 @@ db.user = require("./user.model");
 db.role = require("./role.model");
 db.order = require("./order.model");
 db.driver = require("./driver.model");
+db.photo = require("./photos.model");
 
 db.ROLES = ["client", "driver", "admin"];
 

@@ -52,6 +52,7 @@ require("./routes/user.routes")(app);
 require("./routes/order.routes")(app);
 require("./routes/client.routes")(app);
 require("./routes/driver.routes")(app);
+require("./routes/photos.routes")(app);
 
 /**admin */
 require("./admin/routes/client.routes")(app);
@@ -59,9 +60,9 @@ require("./admin/routes/driver.routes")(app);
 
 app.get("/", (_req, res) => res.send("Hello World!"));
 
-const port = 8080;
+const PORT = 8080;
 
-app.listen(port, () => console.log(` ${port}! is Live`));
+app.listen(PORT, () => console.log(` ${PORT}! is Live`));
 
 function initializeDb() {
   Role.estimatedDocumentCount((err, count) => {
