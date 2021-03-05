@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import GlobalStyle from "./resources/styles/global";
+import FileUploadComponent from "./components/UploadPhoto/UploadPhoto";
 
 import {
   Home,
@@ -43,7 +44,7 @@ export default function App() {
         </Route>
 
         <Route exact path="/profile" component={Profile} />
-
+        <Route exact path="/notifications" component={FileUploadComponent} />
         <Route exact path="/client/order-truck" component={OrderTruck} />
         <Route path="/client" component={Client} />
         <Route path="/driver" component={Driver} />
