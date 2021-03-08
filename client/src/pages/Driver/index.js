@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
-import { DriverAPI, UserAPI, AuthAPI } from "../../api";
+import { DriverAPI, UserAPI, AuthAPI } from "../../Api";
 import { useSelector, useDispatch } from "react-redux";
-import { selectOrders, activeOrderChanged } from "../../state/orders.slice";
+import { selectOrders, activeOrderChanged } from "../../State/orders.slice";
 
-import destination from "../../resources/images/Destination.svg";
-import { Container } from "../../resources/styles/global";
+import destination from "../../Resources/Images/Destination.svg";
+import { Container } from "../../Resources/Styles/global";
 import { Box } from "./driver.elements";
 
 import {
@@ -17,7 +17,7 @@ import {
   OrderDetails,
   Orders,
   Footer,
-} from "../../components";
+} from "../../Components";
 
 export default function Driver() {
   const dispatch = useDispatch();

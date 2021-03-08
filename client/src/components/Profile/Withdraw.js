@@ -10,7 +10,7 @@ import {
   Container,
   InputAdornment,
 } from "@material-ui/core";
-import { Button } from "../../resources/styles/global";
+import { Button } from "../../Resources/Styles/global";
 import { useForm } from "react-hook-form";
 import { Form, FormAvatar, FormPaper } from "./Profile.elements";
 

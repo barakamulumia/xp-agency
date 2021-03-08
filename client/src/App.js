@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import ScrollToTop from "./components/ScrollToTop";
-import GlobalStyle from "./resources/styles/global";
-import FileUploadComponent from "./components/UploadPhoto/UploadPhoto";
+import ScrollToTop from "./Components/ScrollToTop";
+import GlobalStyle from "./Resources/Styles/global";
+import FileUploadComponent from "./Components/UploadPhoto/UploadPhoto";
 
 import {
   Home,
@@ -15,7 +15,7 @@ import {
   Admin,
   Profile,
   OrderTruck,
-} from "./pages";
+} from "./Pages";
 
 export default function App() {
   return (

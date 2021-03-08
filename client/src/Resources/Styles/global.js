@@ -1,12 +1,12 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { Link } from "react-router-dom";
-import bgImage from "../images/background-lg.svg";
+import bgImage from "../Images/background-lg.svg";
 
 const GlobalStyle = createGlobalStyle`
 * {
   box-sizing: border-box;
   margin: 0;
-  font-family: "Nunito", "Source Sans Pro", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

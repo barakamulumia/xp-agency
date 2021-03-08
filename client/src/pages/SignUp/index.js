@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { SignUp } from "../../components";
+import { SignUp } from "../../Components";
 
 export default function SignUpPage({ route }) {
   return (

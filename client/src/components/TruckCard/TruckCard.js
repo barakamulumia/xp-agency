@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
-import { selectPickUp, selectDestination } from "../../state/maps.slice";
+import { selectPickUp, selectDestination } from "../../State/maps.slice";
 import { Image } from "../index";
 import { CardContainer, Timeline } from "./TruckCard.elements";
 

@@ -1,6 +1,6 @@
 import { Paper, Avatar, Grid } from "@material-ui/core";
 import styled from "styled-components";
-import { Button } from "../../resources/styles/global";
+import { Button } from "../../Resources/Styles/global";
 
 export const FormContainer = styled(Grid)`
   background-image: url("https://i.postimg.cc/qq4HKc3t/production-center.jpg");

@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { unwrapResult } from "@reduxjs/toolkit";
-import { addNewOrder, ordersFilterChanged } from "../../state/orders.slice";
+import { addNewOrder, ordersFilterChanged } from "../../State/orders.slice";
 import {
   selectDestination,
   selectPickUp,
   selectLoad,
   loadSelected,
   locationUpdated,
-} from "../../state/maps.slice";
-import { AuthAPI } from "../../api";
+} from "../../State/maps.slice";
+import { AuthAPI } from "../../Api";
 
 import {
   Select,
@@ -34,7 +34,7 @@ import {
 
 import { FaHelicopter } from "react-icons/fa";
 import MapSearchInput from "../Map/mapinput";
-import calcPriceFromLatLng from "../../resources/utils/price";
+import calcPriceFromLatLng from "../../Resources/Utils/price";
 
 const OderForm = () => {
   const dispatch = useDispatch();

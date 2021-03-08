@@ -11,11 +11,11 @@ import {
   Container,
   InputAdornment,
 } from "@material-ui/core";
-import { Button } from "../../resources/styles/global";
+import { Button } from "../../Resources/Styles/global";
 import { useForm } from "react-hook-form";
 
 import ValidationError from "../Error/Validation";
-import ValidationPatterns from "../../resources/patterns/validation";
+import ValidationPatterns from "../../Resources/Patterns/validation";
 import { Form, FormAvatar, FormPaper } from "./Profile.elements";
 import {
   IoPencil,

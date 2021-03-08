@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Paper } from "@material-ui/core";
-import { Button } from "../../resources/styles/global";
+import { Button } from "../../Resources/Styles/global";
 
 export const OrderCardContainer = styled.div`
   width: 100%;

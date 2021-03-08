@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AuthAPI, PhotoAPI } from "../../api";
+import { AuthAPI, PhotoAPI } from "../../Api";
 
 export default function FileUploadComponent() {
   const [profileImg, setProfileImg] = useState("");

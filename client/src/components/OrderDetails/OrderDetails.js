@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { currencyToString } from "../../resources/utils/price";
+import { currencyToString } from "../../Resources/Utils/price";
 
 import {
   updateOrder,
   ordersFilterChanged,
   selectActiveOrder,
-} from "../../state/orders.slice";
+} from "../../State/orders.slice";
 
-import { DriverAPI, ClientAPI } from "../../api";
-import { Button } from "../../resources/styles/global";
+import { DriverAPI, ClientAPI } from "../../Api";
+import { Button } from "../../Resources/Styles/global";
 
 import {
   OrderDetailsContainer,

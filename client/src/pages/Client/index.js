@@ -3,10 +3,10 @@ import { Redirect } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 
-import { UserAPI, AuthAPI } from "../../api";
-import { activeOrderChanged, selectOrders } from "../../state/orders.slice";
-import { Container } from "../../resources/styles/global";
-import { ClientInfo } from "../../resources/data/clientinfo";
+import { UserAPI, AuthAPI } from "../../Api";
+import { activeOrderChanged, selectOrders } from "../../State/orders.slice";
+import { Container } from "../../Resources/Styles/global";
+import { ClientInfo } from "../../Resources/Data/clientinfo";
 import { Box } from "./client.elements";
 
 import {
@@ -15,7 +15,7 @@ import {
   ClientInfoSection,
   Footer,
   Orders,
-} from "../../components";
+} from "../../Components";
 
 export default function Client() {
   const orders = useSelector(selectOrders);

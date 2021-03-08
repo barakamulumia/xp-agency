@@ -1,6 +1,6 @@
 import { Paper, Avatar, FormControl, MenuItem } from "@material-ui/core";
 import styled from "styled-components";
-import { Button } from "../../resources/styles/global";
+import { Button } from "../../Resources/Styles/global";
 
 export const FormPaper = styled(Paper)`
   background: rgba(250, 248, 248, 0.945) !important;

@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import { Footer, Navbar, OrderForm, TruckCard, Price } from "../../components";
+import { Footer, Navbar, OrderForm, TruckCard, Price } from "../../Components";
 import { Box } from "./client.elements";
-import { Container } from "../../resources/styles/global";
+import { Container } from "../../Resources/Styles/global";
 
 import { Grid } from "@material-ui/core";
 

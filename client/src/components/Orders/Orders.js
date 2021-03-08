@@ -6,9 +6,9 @@ import {
   fetchOrders,
   ordersFilterChanged,
   selectFilter,
-} from "../../state/orders.slice";
+} from "../../State/orders.slice";
 
-import { LinkButton } from "../../resources/styles/global";
+import { LinkButton } from "../../Resources/Styles/global";
 import OrderCard from "../OrderCard/OrderCard";
 
 import {

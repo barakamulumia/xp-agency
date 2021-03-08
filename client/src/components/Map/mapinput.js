@@ -6,7 +6,7 @@ import PlacesAutocomplete, {
   getLatLng,
 } from "react-places-autocomplete";
 
-import { locationUpdated } from "../../state/maps.slice";
+import { locationUpdated } from "../../State/maps.slice";
 
 import { LocationSearchInput } from "./mapinput.elements";
 

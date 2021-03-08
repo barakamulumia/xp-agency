@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { FaTimes, FaBars } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { DecisionDialog } from "../index";
-import { AuthAPI } from "../../api";
+import { AuthAPI } from "../../Api";
 import UserNav from "./UserNav";
 
 import {

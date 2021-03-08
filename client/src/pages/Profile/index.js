@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import { Navbar, PersonalDetails, MobileMoney } from "../../components";
-import { AuthAPI } from "../../api";
-import { ImageBgContainer } from "../../resources/styles/global";
+import { Navbar, PersonalDetails, MobileMoney } from "../../Components";
+import { AuthAPI } from "../../Api";
+import { ImageBgContainer } from "../../Resources/Styles/global";
 import { Grid } from "@material-ui/core";
 
 import {

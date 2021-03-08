@@ -1,4 +1,4 @@
-import image from "../images/nav.svg";
+import image from "../Images/nav.svg";
 
 export const ClientInfo = {
   topline: {

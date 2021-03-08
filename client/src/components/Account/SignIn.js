@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { AuthAPI } from "../../api";
+import { AuthAPI } from "../../Api";
 
 import {
   MdLockOutline,
@@ -30,7 +30,7 @@ import {
 } from "./Account.elements";
 
 import ValidationError from "../Error/Validation";
-import ValidationPatterns from "../../resources/patterns/validation";
+import ValidationPatterns from "../../Resources/Patterns/validation";
 
 export default function SignUp({ route }) {
   const { register, handleSubmit, errors } = useForm({

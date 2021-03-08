@@ -6,7 +6,7 @@ import {
   FaTwitch,
   FaTwitter,
 } from "react-icons/fa";
-import { Button } from "../../resources/styles/global";
+import { Button } from "../../Resources/Styles/global";
 
 import {
   FooterContainer,

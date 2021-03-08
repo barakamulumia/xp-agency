@@ -2,13 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import calcPriceFromLatLng, {
   currencyToString,
-} from "../../resources/utils/price";
+} from "../../Resources/Utils/price";
 
 import {
   selectDestination,
   selectPickUp,
   selectLoad,
-} from "../../state/maps.slice";
+} from "../../State/maps.slice";
+
 import {
   PriceContainer,
   PriceSymbol,

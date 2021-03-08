@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { UserAPI } from "../../api";
-import { Navbar } from "../../components";
+import { UserAPI } from "../../Api";
+import { Navbar } from "../../Components";
 
 export default function Client() {
   const [content, setContent] = useState(undefined);

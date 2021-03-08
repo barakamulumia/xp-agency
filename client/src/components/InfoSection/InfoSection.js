@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Container } from "../../resources/styles/global";
+import { Container } from "../../Resources/Styles/global";
 import { DecisionDialog } from "../index";
 
 import {
